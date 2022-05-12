@@ -24,7 +24,7 @@ CREATE TABLE contests (
     con_total_spots varchar(255) NOT NULL,
     con_spots varchar(255) NOT NULL, 
     con_startdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    con_enddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    con_enddate TIMESTAMP DEFAULT 0,
     con_win varchar(255) NOT NULL,
     con_discription varchar(255) NOT NULL,
     con_thumbnails varchar(255) NOT NULL,
