@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('./head'); %>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+    <div>
+
+      <div class="container">
+      <h1>Add New Contest</h1>
+    
+      
+    <form method='POST' action="/contest/createContest" enctype="multipart/form-data" >
+              <span>Fill fields create an contest</span>
+          <div class="right-pane">
+              <input type="text" id="product_id" name="product_id"  placeholder="product_id" value="<%= product_id %>" /></br>
+              <!-- <input type="text" id="con_status" name="con_status"  placeholder="con_status"/></br> -->
+              <input type="text" id="con_total_spots" name="con_total_spots"  placeholder="con_total_spots"/></br>
+              <input type="datetime-local" id="con_startdate" name="con_startdate"  placeholder="con_startdate"/></br>
+              <input type="datetime-local" id="con_enddate" name="con_enddate"  placeholder="con_enddate"/></br>
+              <!-- <input type="text" id="con_win" name="con_win"  placeholder="con_win"/></br> -->
+              <input type="text" id="con_discription" name="con_discription"  placeholder="con_discription"/></br>
+              <input type="file" name="file"  id="con_thumbnails" /></br>
+              <!-- <input type="text" id="con_winner" name="con_winner"  placeholder="con_winner"/></br> -->
+              <!-- <input type="text" id="con_winnerCoupen" name="con_winnerCoupen"  placeholder="con_winnerCoupen"/></br> -->
+          </div>
+          <input type="submit" value="Create New Contest" />
+        </form>
+      </div>
+  </div>
+</body>
+
+<style>
+  
+  body{
+    /* display: flex; 
+    justify-content: center; */
+  }
+  .container{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+  input{
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  input[type = "submit"]{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover{
+    border: 2px solid #000;
+  }
+</style>
+  
+</html>

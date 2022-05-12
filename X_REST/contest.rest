@@ -1,0 +1,57 @@
+
+@baseUrl =  http://localhost:4000/contest
+
+GET {{baseUrl}}/getContest/product_id/product_id
+###
+
+GET {{baseUrl}}/getContests/id
+###
+
+GET {{baseUrl}}/getMyOrders/user
+###
+
+POST {{baseUrl}}/createContest
+Content-Type: application/json
+
+{
+"con_id": "3",
+"product_id": "product_id",
+"con_status": "con_status",
+"con_spots": "con_spots",
+"con_startdate": "con_startdate",
+"con_enddate": "con_enddate",
+"con_win": "con_win",
+"con_discription": "con_discription",
+"con_thumbnails": "con_thumbnails",
+"con_winner": "con_winner",
+"con_winnerCoupen": "con_winnerCoupen"
+}
+###
+
+POST {{baseUrl}}/updateContest
+Content-Type: application/json
+
+{
+"id": "2",
+"con_status": "completed"
+}
+###
+
+DELETE   {{baseUrl}}/deleteContest
+Content-Type: application/json
+
+{
+"id": "2"
+}
+
+
+###
+
+POST {{baseUrl}}/updateQuantity/2
+Content-Type: application/json
+
+{
+    "id": "2",
+    "quantity": "6"
+}
+###

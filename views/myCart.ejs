@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./head'); %>
+</head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+  <!-- <%- include('./nav'); %> -->
+
+
+  <main>
+
+
+    <button><a href="/">Home</a></button>
+  
+  
+  
+      <div class="jumbotron">
+        <h1>My Cart</h1>
+        <ul>
+          <% carts.forEach(function(cart) { %>
+            <li>
+              <strong><%= cart.id %></strong>
+               <%= cart.contest_id %>,
+               <%= cart.user_id %>
+               <%= cart.order_status %>
+               <%= cart.order_date %>
+    <form method='POST' action="/contest/updateQuantity/<%=cart.id%>" >
+        <p>Quantity</p>
+        <input type="number" placeholder="<%=cart.quantity%>" id="quantity"  name="quantity" >
+        <input type="submit" value="Update">
+    </form>
+               <button ><a href="/goToPayment">Buy</a></button>
+            </li>
+          <% }); %>
+        </ul>
+      </div>
+    </main>
+  
+
+
+</body>
+<style>
+  p {
+    line-height: 0px;
+  }
+
+  li {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+
+</html>

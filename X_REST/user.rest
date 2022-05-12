@@ -1,0 +1,45 @@
+
+@baseUrl =  http://localhost:4000/user
+
+GET {{baseUrl}}/getUser/users/username/amir test
+
+
+###
+
+GET {{baseUrl}}/getUsers/users/username
+###
+
+POST {{baseUrl}}/addUser/users
+Content-Type: application/json
+
+{
+"id": "25",
+"username" : "amir test",
+"fullname" : "test filed",
+"user_password" : "test filed",
+"mobile" : "test filed"
+}
+
+
+###
+
+POST {{baseUrl}}/updateUser/users
+Content-Type: application/json
+
+{
+"id": "25",
+"username" : "amir",
+"fullname" : "test filed",
+"user_password" : "test filed",
+"mobile" : "test filed"
+}
+
+###
+
+DELETE   {{baseUrl}}/deleteData/users
+Content-Type: application/json
+
+{
+"id": "25"
+}
+

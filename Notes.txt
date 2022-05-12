@@ -1,0 +1,17 @@
+Tasks -- >
+
+*post user
+*post product
+*post contest
+
+get user
+*get contests
+
+
+put contest
+
+delete product
+
+
+
+host app

@@ -1,0 +1,39 @@
+
+@baseUrl =  http://localhost:4000/product
+
+GET {{baseUrl}}/getProduct/id/1
+###
+
+GET {{baseUrl}}/getProducts/id
+###
+
+POST {{baseUrl}}/createProduct
+Content-Type: application/json
+
+{
+"pr_name" : "pr_name",
+"pr_price" : "pr_price",
+"pr_discription" : "pr_discription",
+"pr_thumbnails" : "pr_thumbnails"
+    }
+###
+
+POST {{baseUrl}}/updateProduct
+Content-Type: application/json
+
+{
+    "id" : "1",
+"pr_name" : "pr_name_changes",
+"pr_price" : "pr_price",
+"pr_discription" : "pr_discription",
+"pr_thumbnails" : "pr_thumbnails"
+    }
+###
+
+DELETE   {{baseUrl}}/deleteProduct
+Content-Type: application/json
+
+{
+"id": "2"
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('./head'); %>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+
+
+<main>
+
+
+  <button><a href="/">Home</a></button>
+
+
+
+    <div class="jumbotron">
+      <h1>Prodcuts</h1>
+      <ul>
+        <% products.forEach(function(product) { %>
+          <li>
+            <strong><%= product.pr_name %></strong>
+             <%= product.pr_discription %>,
+             <%= product.pr_price %>
+             <img src="/images/products/<%= product.pr_thumbnails %>" width="100px" height="100px" />
+             <button ><a href="/createContest/<%= product.id %>">Create a contest</a></button>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </main>
+
+</body>
+  
+</html>

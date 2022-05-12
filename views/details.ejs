@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+
+      <div class="container">
+      <h1>-- Contest/ Product Details  -- <%= contest_details.con_id %> </h1>
+  <button><a href="/contest/orderSpot/<%= `${'admin'}/${contest_details.con_id}`%>" >Add to Cart</a></button>
+
+      <p>con_id: <%= contest_details.con_id %></p> 
+      <p>product_id: <%= contest_details.product_id %></p> 
+      <p>con_status: <%= contest_details.con_status %></p> 
+      <p>con_spots: <%= contest_details.con_spots %></p> 
+      <p>con_startdate: <%= contest_details.con_startdate %></p> 
+      <p>con_enddate: <%= contest_details.con_enddate %></p> 
+      <p>con_win: <%= contest_details.con_win %></p> 
+      <p>con_discription: <%= contest_details.con_discription %></p> 
+      <img src="/images/contest_cover/<%= contest_details.con_thumbnails %>" width="100px" height="100px">
+      <p>con_thumbnails: <%= contest_details.con_thumbnails %></p> 
+      <p>con_winner: <%= contest_details.con_winner %></p> 
+      <p>con_winnerCoupen: <%= contest_details.con_winnerCoupen %></p> 
+      <p>pr_id: <%= contest_details.pr_id %></p> 
+      <p>pr_name: <%= contest_details.pr_name %></p> 
+      <p>pr_price: <%= contest_details.pr_price %></p> 
+      <p>pr_discription: <%= contest_details.pr_discription %></p> 
+      <img src="/images/products/<%= contest_details.pr_thumbnails %>" width="100px" height="100px">
+      <p>pr_thumbnails: <%= contest_details.pr_thumbnails %></p> 
+    
+    </div>
+</body>
+
+<style>
+  body{
+    /* display: flex; 
+    justify-content: center; */
+  }
+  .container{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+  input{
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  input[type = "submit"]{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover{
+    border: 2px solid #000;
+  }
+</style>
+  
+</html>

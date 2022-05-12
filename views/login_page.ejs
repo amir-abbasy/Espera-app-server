@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('./head'); %>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+
+      <div class="container">
+      <h1>-- LOGIN -- </h1>
+         
+    <form method='POST' action="/user/login">
+  <div class="right-pane">
+      <input type="text" id="username" name="username"  placeholder="username"/></br>
+      <input type="text" id="user_password" name="user_password"  placeholder="password"/></br>
+  </div>
+  <input type="submit" value="Login" />
+</form>
+    </div>
+</body>
+
+<style>
+  body{
+    /* display: flex; 
+    justify-content: center; */
+  }
+  .container{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+  input{
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  input[type = "submit"]{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover{
+    border: 2px solid #000;
+  }
+</style>
+  
+</html>

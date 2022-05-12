@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('./head'); %>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+    <div>
+
+      <div class="container">
+      <h1>Add New Product</h1>
+    
+      
+    <form method='POST' action="/product/createProduct"  enctype="multipart/form-data" >
+              <span>Fill fields create an account</span>
+          <div class="right-pane">
+              <input type="text" id="pr_name" name="pr_name"  placeholder="pr_name"/></br>
+              <input type="text" id="pr_price" name="pr_price" placeholder="pr_price" /></br>
+              <input type="text" id="pr_discription" name="pr_discription"  placeholder="pr_discription"/></br>
+              <!-- <input type="text" id="pr_thumbnails" name="pr_thumbnails" placeholder="pr_thumbnails" /></br> -->
+              <input type="file" name="file"  id="pr_thumbnails" />
+            </div>
+          <input type="submit" value="Register New User" />
+        </form>
+      </div>
+  </div>
+</body>
+
+<style>
+  body{
+    /* display: flex; 
+    justify-content: center; */
+  }
+  .container{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+  input{
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  input[type = "submit"]{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover{
+    border: 2px solid #000;
+  }
+</style>
+  
+</html>

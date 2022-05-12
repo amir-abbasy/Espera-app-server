@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <%- include('./head'); %>
+      </head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+    <!-- <%- include('./nav'); %> -->
+
+    <div>
+
+      <div class="container">
+      <h1>Register New User</h1>
+    
+      
+    <form method='POST' action="/user/addUser">
+              <span>Fill fields create an account</span>
+          <div class="right-pane">
+              <input type="text" id="username" name="username"  placeholder="username"/></br>
+              <input type="text" id="fullname" name="fullname" placeholder="fullname" /></br>
+              <input type="text" id="user_password" name="user_password"  placeholder="user_password"/></br>
+              <input type="number" id="mobile" name="mobile" placeholder="mobile" /></br>
+          </div>
+          <input type="submit" value="Register New User" />
+        </form>
+      </div>
+  </div>
+</body>
+
+<style>
+  body{
+    /* display: flex; 
+    justify-content: center; */
+  }
+  .container{
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+  input{
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+  input[type = "submit"]{
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover{
+    border: 2px solid #000;
+  }
+</style>
+  
+</html>
