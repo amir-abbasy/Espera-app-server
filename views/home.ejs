@@ -29,9 +29,13 @@
 
     <div class="jumbotron">
       <h1>Contests</h1>
-      <ul>
+
+      <% if(contests.length > 0){ %>
+    
+
+        <ul>
         <% contests.forEach(function(contest) { console.log(contest); %>
-          <li style="border: 2px solid #ccc; list-style: none;">
+          <li style="border: 2px solid #ccc; list-style: none; width: 50%;">
             <p><strong>
                 <%= contest.con_status %>
               </strong></p>
@@ -47,6 +51,9 @@
           </li>
           <% }); %>
       </ul>
+      <% } else{ %>  
+        <p>No Contests Yet</p>
+     <% } %>
     </div>
   </main>
 

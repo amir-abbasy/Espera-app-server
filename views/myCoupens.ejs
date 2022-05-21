@@ -20,7 +20,7 @@
   
   
       <div class="jumbotron">
-        <h1>My Cart</h1>
+        <h1>My Coupens</h1>
         <ul>
           <% carts.forEach(function(cart) { %>
             <li>
@@ -29,12 +29,11 @@
                <%= cart.user_id %>
                <%= cart.order_status %>
                <%= cart.order_date %>
-    <form method='POST' action="/contest/updateQuantity/<%=cart.id%>" >
+    <!-- <form method='POST' action="/contest/updateQuantity/<%=cart.id%>" >
         <p>Quantity</p>
         <input type="number" placeholder="<%=cart.quantity%>" id="quantity"  name="quantity" >
         <input type="submit" value="Update">
-    </form>
-               <button ><a href="/contest/goToPayment/<%=cart.id%>">Buy</a></button>
+    </form> -->
             </li>
           <% }); %>
         </ul>

@@ -12,8 +12,9 @@ router.delete('/deleteContest', ContestController.deleteContest)
 
 router.get('/getContestAll', ContestController.getAllWithProducts)
 router.get('/orderSpot/:user_id/:contest_id/', ContestController.orderSpot)
-router.get('/getMyOrders/:user_id', ContestController.getMyOrders)
+router.get('/getMyOrders/:user_id/:type', ContestController.getMyOrders)
 router.post('/updateQuantity/:order_id', ContestController.updateQuantity)
+router.post('/goToPayment/:order_id', ContestController.goToPayment)
 
 
 

@@ -41,10 +41,6 @@ class Model {
 
 
 
-
-
-
-
      //delete a specific row on a table
     /**
     * @param {table name} table
@@ -66,9 +62,11 @@ class Model {
 
     //get all data from a table in filter by a field and order by field
     getAllByField = async (table, field, value, order_field, callback) => {
-        let sql = `SELECT * from ?? WHERE ?? =?  ORDER BY ?? DESC`;
+        let sql = `SELECT * from ?? WHERE ?? =? ORDER BY ?? DESC`;
         this.db.query(sql, [table, field, value, order_field], callback);
     }
+
+    
 
 
 

@@ -7,7 +7,7 @@ GET {{baseUrl}}/getContest/product_id/product_id
 GET {{baseUrl}}/getContests/id
 ###
 
-GET {{baseUrl}}/getMyOrders/user
+GET {{baseUrl}}/getMyOrders/admin
 ###
 
 POST {{baseUrl}}/createContest
@@ -54,4 +54,16 @@ Content-Type: application/json
     "id": "2",
     "quantity": "6"
 }
+###
+POST {{baseUrl}}/goToPayment/2
+Content-Type: application/json
+
+{
+    "id": "2",
+    "order_status": "shipped"
+}
+###
+
+
+GET {{baseUrl}}/getMyOrders/admin/oncart
 ###

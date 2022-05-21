@@ -25,17 +25,38 @@ class ContestModel extends Model {
     this.db.query(sql, obj, callback);
   };
 
-  updateData=(obj, callback) => { 
+  updateData = (obj, callback) => {
     let sql = `UPDATE orders_spots SET ? WHERE id = ?`;
     this.db.query(sql, [obj, obj.id], callback);
-  }
+  };
 
-  updateQuantity =(obj, callback) => { 
+  updateQuantity = (obj, callback) => {
     let sql = `UPDATE orders_spots SET quantity =${obj.quantity} WHERE id = ${obj.id}`;
     this.db.query(sql, callback);
-  }
+  };
 
+  //get all data from a table in filter by a field and order by field
+  getOrders = async (
+    table,
+    field,
+    value,
+    order_status,
+    status,
+    order_field,
+    callback
+  ) => {
+    let sql = `SELECT * from ?? WHERE ?? =? AND ?? =? ORDER BY ?? DESC`;
+    this.db.query(
+      sql,
+      [table, field, value, order_status, status, order_field],
+      callback
+    );
+  };
 
+  updateSpot = (obj, callback) => {
+    let sql = `UPDATE orders_spots SET order_status =${obj.order_status} WHERE id = ${obj.id}`;
+    this.db.query(sql, callback);
+  };
 }
 
 module.exports = ContestModel;

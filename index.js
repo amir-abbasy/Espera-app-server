@@ -8,9 +8,8 @@ const ContestModel  = require('./models/data/ContestModel')
 const ProductModel  = require('./models/data/ProductModel')
 var upload = require('./utils/file_uploader')
 
-
-
- 
+const { v4: uuidv4 } = require('uuid');
+// console.log("=======coupen=========", uuidv4().split('-')[4]);
 
 /**
  * @middleware
@@ -101,7 +100,7 @@ app.get('/', function(req, res) {
   })
   
   app.get('/myCart/:user', (req, res)=>{
-      new ContestModel().getAllByField('orders_spots', 'user_id', req.params.user, 'id', (err, results)=>{
+      new ContestModel().getOrders('orders_spots', 'user_id', req.params.user, 'order_status', 'oncart', 'id', (err, results)=>{
       if(err) res.send("ERR")
       else res.render('myCart', {
         carts: results
@@ -109,6 +108,14 @@ app.get('/', function(req, res) {
     })
   })
   
+  app.get('/myCoupens/:user', (req, res)=>{
+      new ContestModel().getOrders('orders_spots', 'user_id', req.params.user, 'order_status', 'shipped', 'id', (err, results)=>{
+      if(err) res.send("ERR")
+      else res.render('myCoupens', {
+        carts: results
+      })
+    })
+  })
   
   app.use('/data', require('./routers/data/dataRouter'))
   app.use('/user', require('./routers/data/userRouter'))
