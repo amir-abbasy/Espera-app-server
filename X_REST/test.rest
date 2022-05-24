@@ -1,7 +1,10 @@
 
-@baseUrl =  http://localhost:4000/user
+@baseUrl =  http://localhost:4000/data
 
-GET {{baseUrl}}/getUser/username/amir
+POST {{baseUrl}}/test
+Content-Type: application/json
+
+{"name":"amir"}
 
 
 ###
@@ -42,5 +45,21 @@ Content-Type: application/json
 
 {
 "id": "25"
+}
+
+
+
+###
+
+POST http://localhost:4000/addUser
+Content-Type: application/json
+
+{
+"id": "25",
+"user_id": "user1",
+"username" : "amir test",
+"fullname" : "test filed",
+"user_password" : "test filed",
+"mobile" : "test filed"
 }
 

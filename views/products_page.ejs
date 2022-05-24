@@ -22,14 +22,23 @@
 
     <div class="jumbotron">
       <h1>Prodcuts</h1>
-      <ul>
+      <ul style="display: flex">
         <% products.forEach(function(product) { %>
           <li>
-            <strong><%= product.pr_name %></strong>
-             <%= product.pr_discription %>,
-             <%= product.pr_price %>
-             <img src="/images/products/<%= product.pr_thumbnails %>" width="100px" height="100px" />
-             <button ><a href="/createContest/<%= product.id %>">Create a contest</a></button>
+            <img src="/images/products/<%= product.pr_thumbnails %>" width="100px" height="100px" />
+            <p>
+              <strong><%= product.pr_name %></strong>
+            </p>
+            <span style="opacity: .5">Discription</span>
+            <p>
+              <%= product.pr_discription %>
+            </p>
+            <span style="opacity: .5">Price : </span>
+
+             <p>
+               Rs <%= product.pr_price %> /-
+             </p>
+             <button ><a href="/createContest/<%= product.id %>">Create contest on this product</a></button>
           </li>
         <% }); %>
       </ul>
@@ -37,5 +46,18 @@
   </main>
 
 </body>
+<style>
+  li{
+    list-style: none;
+    font-size: 18px;
+    line-height: 10px;
+    border: 5px solid rgb(195, 195, 195);
+    padding: 20px;
+    margin: 10px;
+    width: 20%;
+  }
+  main{padding: 10%; padding-top: 2%;}
+
+</style>
   
 </html>

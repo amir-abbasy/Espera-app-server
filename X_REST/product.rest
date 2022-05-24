@@ -12,6 +12,7 @@ Content-Type: application/json
 
 {
 "pr_name" : "pr_name",
+"pr_id" : "pr_1",
 "pr_price" : "pr_price",
 "pr_discription" : "pr_discription",
 "pr_thumbnails" : "pr_thumbnails"

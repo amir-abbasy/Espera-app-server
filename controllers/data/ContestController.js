@@ -23,7 +23,8 @@ const ContestController = {
     });
   },
   createContest: (req, res) => {
-    var path = "public\\images\\contest_cover";
+    // var path = "public\\images\\contest_cover";
+    var path = "public/images/contest_cover";
     upload(path)(req, res, function (err) {
       if (err instanceof multer.MulterError) {
         return res.status(500).json(err);
@@ -33,12 +34,13 @@ const ContestController = {
       // const table = req.params.table
       const fields = {
         ...req.body,
+        con_id: new Date().getDate(),
         con_status: "active",
         con_thumbnails: req.file.filename,
       };
-      // console.log("====", fields);
+      console.log("====", fields);
       new ContestModel().addData(table, fields, (err, results) => {
-        if (err) res.send("ERR");
+        if(err)res.send("ERR"+err);
         else {
           res.send("Contest Created Successfully");
           // res.redirect('product/addProdcuts_page')
@@ -77,6 +79,17 @@ const ContestController = {
   getMyOrders: (req, res) => {
     const user_id = req.params.user_id;
     new ContestModel().getOrders(
+      user_id,
+      (err, results) => {
+        if (err) res.send("ERR"+err);
+        else res.send("£££", results);
+      }
+    );
+  },
+
+  getMyOrders_: (req, res) => {
+    const user_id = req.params.user_id;
+    new ContestModel().getOrders(
       "orders_spots",
       "user_id",
       user_id,
@@ -84,7 +97,7 @@ const ContestController = {
       "oncart",
       "id",
       (err, results) => {
-        if (err) res.send("ERR");
+        if (err) res.send("ERR"+err);
         else res.send(results);
       }
     );
@@ -92,9 +105,13 @@ const ContestController = {
 
   orderSpot: (req, res) => {
     new ContestModel().orderSpot(
-      { ...req.params, order_status: "oncart" },
+      { ...req.params, 
+        order_id: new Date().getTime(),
+        coupen:new Date().getTime(),
+        order_status: "oncart",
+        quantity: 1, },
       (err, results) => {
-        if (err) res.send("ERR");
+        if (err) res.send("ERR : "+err);
         else res.send(results);
       }
     );
@@ -115,11 +132,22 @@ const ContestController = {
   },
   goToPayment: (req, res) => {
     var order_id = req.params.order_id;
-    console.log("now", order_id);
+    var contest_id = req.params.contest_id;
+    var current_spots = req.params.spots;
+
+    // console.log("now", req.params);
     new ContestModel().updateSpot(
-      { id: order_id, order_status: "complete" },
+      {order_id, order_status: "complete" },
       (err, results) => {
-        if (err) res.send("ERR");
+        if (err) res.send("ERR"+err);
+        // else res.send(results);
+        else console.log('spot status updated');
+      }
+    )
+    new ContestModel().updateContestSpot(
+      { contest_id, current_spots},
+      (err, results) => {
+        if (err) res.send("ERR"+err);
         else res.send(results);
       }
     );

@@ -19,22 +19,67 @@
   
   
   
-      <div class="jumbotron">
+      <div >
         <h1>My Cart</h1>
         <ul>
           <% carts.forEach(function(cart) { %>
             <li>
-              <strong><%= cart.id %></strong>
-               <%= cart.contest_id %>,
-               <%= cart.user_id %>
-               <%= cart.order_status %>
-               <%= cart.order_date %>
-    <form method='POST' action="/contest/updateQuantity/<%=cart.id%>" >
-        <p>Quantity</p>
-        <input type="number" placeholder="<%=cart.quantity%>" id="quantity"  name="quantity" >
-        <input type="submit" value="Update">
+
+              <div class="details">  
+
+              <div>
+
+                <strong>order_id : <%= cart.order_id %></strong></br>
+                contest_id : <%= cart.contest_id %></br>
+                product_id : <%= cart.product_id %></br>
+                user_id : <%= cart.user_id %></br>
+                coupen : <%= cart.coupen %></br>
+                cart :  <%= cart.order_status %></br>
+                quantity : <%= cart.quantity %></br>
+                order_date : <%= cart.order_date %></br>
+                con_id : <%= cart.con_id %></br>
+               
+              </div>
+
+              <div>
+                con_status : <%= cart.con_status %></br>
+                con_total_spots : <%= cart.con_total_spots %></br>
+                con_spots : <%= cart.con_spots %></br>
+                con_startdate : <%= cart.con_startdate %></br>
+                con_enddate : <%= cart.con_enddate %></br>
+                art :<%= cart.con_win %>
+                con_discription : <%= cart.con_discription %></br>
+                con_thumbnails : <%= cart.con_thumbnails %></br>
+                con_winner : <%= cart.con_winner %></br>
+            
+              </div>
+
+              <div>
+                con_winnerCoupen : <%= cart.con_winnerCoupen %></br>
+                pr_id : <%= cart.pr_id %></br>
+                pr_name : <%= cart.pr_name %></br>
+                pr_price : <%= cart.pr_price %></br>
+                pr_discription : <%= cart.pr_discription %></br>
+                pr_thumbnails : <%= cart.pr_thumbnails %>
+              </div>
+             
+            </div>
+             
+          
+
+    <form method='POST' action="/contest/updateQuantity/<%=cart.order_id%>" class="updateQuantity" >
+        <p>Update Quantity</p>
+        <input type="number" placeholder="<%=cart.quantity%>" id="quantity"  name="quantity" style="width: 20%;">
+        <input type="submit" value="Update Quantity" style="width: 20%;">
     </form>
-               <button ><a href="/contest/goToPayment/<%=cart.id%>">Buy</a></button>
+            
+    
+    <!-- <button ><a href="/contest/goToPayment/<%=cart.id%>">Buy</a></button> -->
+    <form method='POST' action="/contest/goToPayment/<%=cart.order_id%>/<%=cart.contest_id%>/<%=cart.con_spots%>" >
+      <input type="submit" value="Buy">
+  </form>
+
+
             </li>
           <% }); %>
         </ul>
@@ -48,20 +93,26 @@
   p {
     line-height: 0px;
   }
-
+  
   li {
     padding: 10px;
     margin-bottom: 10px;
+    border: 5px solid rgb(201, 201, 201);
+    list-style: none;
+    margin-top: 40px;
   }
-
+  
   
   body{
     /* display: flex; 
     justify-content: center; */
     /* background-color: rgba(153, 0, 255, 0.247); */
-font-family: 'Roboto Condensed', sans-serif;
-
+    font-family: 'Roboto Condensed', sans-serif;
+    
   }
+  main{padding: 10%; padding-top: 2%;}
+
+
   .container{
     width: 50%;
     align-items: center;
@@ -108,6 +159,18 @@ nav li{
   list-style: none;
 }
  
+.updateQuantity{
+   margin-top: 20px;
+   background-color:  rgb(214, 214, 214);
+   padding: 10px;
+ }
+
+ .details{
+  display: flex
+ }
+ .details div {
+  margin-left: 20px;
+ }
 </style>
 
 </html>

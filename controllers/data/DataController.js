@@ -36,7 +36,11 @@ const DataController = {
             if(err) res.send("ERR")
             else res.send(results)
         })
+    },
+    test:(req, res)=>{
+        console.log("works test new" , req.body);
     }
+
 }
 
 module.exports = DataController

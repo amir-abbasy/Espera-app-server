@@ -1,19 +1,18 @@
 require('dotenv').config();
 const pool = require('./config')
 
-class Model {
-   //mysql config
-   db = pool
 
-    //common operation
+class Model {
+    //mysql config
+
+    db = pool
+
 
     //get a data
-    getOne = async (table, field, value, callback) => {
+    getOne =  (table, field, value, callback) => {
         let sql = `SELECT * FROM ${table} WHERE ??=?`;
         this.db.query(sql, [field, value], callback);
     }
-
-
 
     //insert into a specific table
     /**

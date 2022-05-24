@@ -10,7 +10,9 @@ const UserController = {
         const field = req.params.field
         const value = req.params.value
         new UserModel().getOne(table, field, value, (err, results)=>{
-            if(err) res.send("ERR")
+            if(err) {
+                console.log(">",err);
+                res.send("ERR")}
             else res.send(results)
         })
     },
@@ -25,8 +27,11 @@ const UserController = {
     addUser:(req, res)=>{
         // const table = req.params.table
         const fields = req.body
-        new UserModel().addData(table, fields, (err, results)=>{
-            if(err) res.send("ERR")
+        var user_id = 'user_id_1'
+        new UserModel().addData(table, {...fields, user_id: user_id}, (err, results)=>{
+            if(err) {
+                console.log(">",err);
+                res.send("add user error")}
             else res.send("User Added Successfully")
         })
     },
@@ -52,7 +57,8 @@ const UserController = {
         new UserModel().getOne(table, "username", req.body.username,  (err, results)=>{
             if(err) res.send("ERR")
             else {
-                if(results && results[0]){
+                console.log("====",results);
+                if(results.length != 0){
                     if(results[0].user_password == req.body.user_password){
                         console.log("go now");
                         res.send(results)

@@ -8,6 +8,8 @@ router.get('/getOne/:table/:field/:value', DataController.getOne)
 router.post('/addUser/:table', DataController.addUser)
 router.post('/updateUser/:table', DataController.updateUser)
 router.delete('/deleteData/:table', DataController.deleteData)
+router.post('/test', DataController.test)
+
 
 
 

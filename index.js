@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
  * @routers
  */
  app.post("/uploads", function (req, res) {
-  //  console.log("===",req);
+   console.log("uploads", req.file);
    upload(req, res, function (err) {
     console.log("===>",req.file);
     if (err instanceof multer.MulterError) {
@@ -42,6 +42,10 @@ app.set('view engine', 'ejs');
   });
 });
 
+app.post('/test', function(req, res) {
+  console.log("Works");
+  console.log("-", req.body);
+})
 
 // index page
 app.get('/', function(req, res) {
@@ -100,7 +104,8 @@ app.get('/', function(req, res) {
   })
   
   app.get('/myCart/:user', (req, res)=>{
-      new ContestModel().getOrders('orders_spots', 'user_id', req.params.user, 'order_status', 'oncart', 'id', (err, results)=>{
+      new ContestModel().getOrders(req.params.user, (err, results)=>{
+        console.log("results", results);
       if(err) res.send("ERR")
       else res.render('myCart', {
         carts: results
@@ -121,6 +126,7 @@ app.get('/', function(req, res) {
   app.use('/user', require('./routers/data/userRouter'))
   app.use('/contest', require('./routers/data/contestRouter'))
   app.use('/product', require('./routers/data/productRouter'))
+
 
 const port = process.env.PORT || 4000
 app.listen(port, () => console.log(`running at http://localhost:${port} `))

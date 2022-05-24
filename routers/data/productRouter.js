@@ -10,6 +10,8 @@ router.post('/createProduct',  ProductController.createProduct)
 router.post('/updateProduct', ProductController.updateProduct)
 router.delete('/deleteProduct', ProductController.deleteProduct)
 
+router.post('/test', ProductController.test)
+
 
 
 

@@ -25,7 +25,7 @@ const ProductController = {
     });
   },
   createProduct: (req, res) => {
-    var path  = "public\\\images\\\products"
+    var path  = "public/images/products"
     upload(path)(req, res, function (err) {
       if (err instanceof multer.MulterError) {
         return res.status(500).json(err);
@@ -35,8 +35,8 @@ const ProductController = {
 
     // const table = req.params.table
     const fields = req.body;
-    // console.log("====", fields);
-      var fields_ = {...fields, pr_thumbnails: req.file.filename};
+    console.log("====", fields);
+      var fields_ = {...fields, pr_id: 'pr_1' ,pr_thumbnails: req.file.filename};
       new ProductModel().addData(table, fields_, (err, results) => {
         if (err) res.send("ERR");
         else {
@@ -64,6 +64,9 @@ const ProductController = {
       else res.send(results);
     });
   },
+  test: (req, res) => {
+  console.log("fuckin", req.file);
+  }
 };
 
 module.exports = ProductController;

@@ -23,20 +23,21 @@ CREATE TABLE contests (
     con_id varchar(255) NOT NULL,
     con_status varchar(255) NOT NULL, -- active, soldout, completed
     con_total_spots varchar(255) NOT NULL,
-    con_spots varchar(255) NOT NULL, 
+    con_spots varchar(255), 
     con_startdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     con_enddate TIMESTAMP NULL DEFAULT NULL,
-    con_win varchar(255) NOT NULL,
-    con_discription varchar(255) NOT NULL,
+    con_win varchar(255),
+    con_discription varchar(255),
     con_thumbnails varchar(255) NOT NULL,
-    con_winner varchar(255) NOT NULL,
-    con_winnerCoupen varchar(255) NOT NULL
+    con_winner varchar(255),
+    con_winnerCoupen varchar(255)
 );
 
 CREATE TABLE orders_spots (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     order_id varchar(255) NOT NULL,
     contest_id varchar(255) NOT NULL,
+    product_id varchar(255) NOT NULL,
     user_id varchar(255) NOT NULL,
     coupen varchar(255) NOT NULL,
     order_status varchar(255) NOT NULL, -- oncart, shipped, deliverd, canceled, completed

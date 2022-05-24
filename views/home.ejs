@@ -35,19 +35,35 @@
 
         <ul>
         <% contests.forEach(function(contest) { console.log(contest); %>
-          <li style="border: 2px solid #ccc; list-style: none; width: 50%;">
-            <p><strong>
+          <li style="border: 5px solid #ccc; list-style: none; display: flex;">
+           
+                 <div style="width: 100px; height: 100px; overflow: hidden;">
+                  <img src="/images/products/<%= contest.pr_thumbnails %>" width="100px" height="100px" />
+                </div>
+              
+              
+             <div>
+              <p>
                 <%= contest.con_status %>
-              </strong></p>
-            <img src="/images/products/<%= contest.pr_thumbnails %>" width="100px" height="100px" />
-            <img src="/images/contest_cover/<%= contest.con_thumbnails %>" width="200px" height="150px" />
-            <p>
-              <%= contest.product_id %>,
-            </p>
-            <p>
-              con_spo <%= contest.con_spots %>
-            </p>
-            <button><a href="/cart/<%= contest.con_id %>">View Details</a></button>
+              </p>
+              <p>
+                Spotes : <%= contest.con_spots %> /  <%= contest.con_total_spots %>
+              </p>
+              <p >
+                <b style="color: rgb(183, 7, 7);">Win</b>  <%= contest.con_win %> 
+                <br/>Buy <b>
+                   <%= contest.pr_name %></b> for  Rs <span style="color: rgb(40, 50, 182);"><%= contest.pr_price %>.00 /- </span>
+               </p>
+               <button><a href="/cart/<%= contest.con_id %>">View Details</a></button>
+              </div>
+              
+              <div style="overflow: hidden;">
+                <img src="/images/contest_cover/<%= contest.con_thumbnails %>" width="200px" height="150px" />
+                <p style="opacity: 0.5;">
+                  <%= contest.con_startdate %>
+                </p>
+              </div>            
+            
           </li>
           <% }); %>
       </ul>
@@ -60,13 +76,19 @@
 </body>
 <style>
   p {
-    line-height: 0px;
+    margin: 10px;
   }
 
   li {
     padding: 10px;
     margin-bottom: 10px;
+    font-size: 25px;
   }
+  div{
+    margin: 10px;
+  }
+  main{padding: 10%; padding-top: 2%;}
+
 </style>
 
 </html>
