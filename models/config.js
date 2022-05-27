@@ -12,10 +12,16 @@ console.log(host, user, password, database);
 
  dbConnectionInfo = {
    connectionLimit: 10,
-   host,
-   user,
-   password,
-   database,
+  //  host,
+  //  user,
+  //  password,
+  //  database,
+
+host: 'remotemysql.com',
+user:'FehCWiaq69',
+password:'GDwQD9Ia9h',
+database:'FehCWiaq69'
+
   };
  
 //create mysql connection pool

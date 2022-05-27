@@ -50,7 +50,7 @@ app.post('/test', function(req, res) {
 // index page
 app.get('/', function(req, res) {
   new ContestModel().getAllWithProducts((err, results)=>{
-    if(err) res.send("ERR")
+    if(err) res.send("ERR : "+err)
     // else res.send(results)
     // else console.log(results)
 
@@ -59,7 +59,7 @@ app.get('/', function(req, res) {
     //   { name: 'Tux', organization: "Linux", birth_year: 1996},
     //   { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
     // ];
-
+console.log('results', results);
     res.render('home', {
       // mascots: mascots,
       contests: results
@@ -82,7 +82,7 @@ app.get('/', function(req, res) {
 
   app.get('/cart/:contest_id', (req, res)=>{
     new ContestModel().getOneWithProduct('contests.con_id', req.params.contest_id, (err, results)=>{
-      if(err) res.send("ERR")
+      if(err) res.send("ERR : "+err)
       else res.render('details', {
         contest_details: results[0]
       })
@@ -92,7 +92,7 @@ app.get('/', function(req, res) {
   
   app.get('/products_page', (req, res)=>{
     new ProductModel().getAll('products', 'id', (err, results)=>{
-      if(err) res.send("ERR")
+      if(err) res.send("ERR : "+err)
       else res.render('products_page', {
         products: results
       })
@@ -106,7 +106,7 @@ app.get('/', function(req, res) {
   app.get('/myCart/:user', (req, res)=>{
       new ContestModel().getOrders(req.params.user, (err, results)=>{
         console.log("results", results);
-      if(err) res.send("ERR")
+      if(err) res.send("ERR : "+err)
       else res.render('myCart', {
         carts: results
       })
@@ -115,7 +115,7 @@ app.get('/', function(req, res) {
   
   app.get('/myCoupens/:user', (req, res)=>{
       new ContestModel().getOrders('orders_spots', 'user_id', req.params.user, 'order_status', 'shipped', 'id', (err, results)=>{
-      if(err) res.send("ERR")
+      if(err) res.send("ERR : "+err)
       else res.render('myCoupens', {
         carts: results
       })
