@@ -54,14 +54,14 @@ class ContestModel extends Model {
   };
 
   getOrders = async (
-    user_id,
+    obj,
     callback
   ) => {
 
     let sql = `SELECT *
 FROM ((orders_spots
 INNER JOIN contests ON orders_spots.contest_id = contests.con_id)
-INNER JOIN products ON orders_spots.product_id = products.pr_id) WHERE orders_spots.user_id = '${user_id}' AND  order_status = 'oncart';`;
+INNER JOIN products ON orders_spots.product_id = products.pr_id) WHERE orders_spots.user_id = '${obj.user_id}' AND  order_status = '${obj.status}';`;
 
     this.db.query(sql,callback);
   };

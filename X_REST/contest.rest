@@ -7,7 +7,14 @@ GET {{baseUrl}}/getContest/product_id/product_id
 GET {{baseUrl}}/getContests/id
 ###
 
-GET {{baseUrl}}/getMyOrders/admin
+GET {{baseUrl}}/getContestAll
+###
+
+GET {{baseUrl}}/getOneWithProduct/con_1
+###
+
+
+GET {{baseUrl}}/getMyOrders/25
 ###
 
 POST {{baseUrl}}/createContest
@@ -67,4 +74,4 @@ Content-Type: application/json
 
 
 GET {{baseUrl}}/getMyOrders/admin/oncart
-###
+### /user_id/order_status

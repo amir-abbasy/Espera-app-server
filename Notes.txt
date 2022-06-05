@@ -1,17 +1,26 @@
-Tasks -- >
 
-*post user
-*post product
-*post contest
+https://remotemysql.com/databases.php
 
-get user
-*get contests
+https://remotemysql.com/phpmyadmin/index.php?db=FehCWiaq69
+
+Created!
+You have successfully created a new database. The details are below.
+
+Username: FehCWiaq69
+
+Database name: FehCWiaq69
+
+Password: GDwQD9Ia9h
+
+Server: remotemysql.com
+
+Port: 3306
+
+These are the username and password to log in to your database and phpMyAdmin
 
 
-put contest
 
-delete product
+//////////////   TASKS  ////////////////
 
-
-
-host app
+-
+-
