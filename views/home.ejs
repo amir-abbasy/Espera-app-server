@@ -9,68 +9,134 @@
 <body>
 
   <!-- NAVIGATION -->
-  <!-- <%- include('./nav'); %> -->
-
-
+  <%- include('./nav'); %>
 
   <main>
 
-<h3>Common function</h3>
-<button><a href="/products_page">View All Prodcuts</a></button>
-<h3>Admin function</h3>
-<button><a href="/products_page">Create Contest</a></button>
-<button><a href="/addProdcuts_page">Add new Prodcut</a></button>
-<h3>User function</h3>
-<button><a href="/login_page">Login</a></button>
-<button><a href="/registerUser">Register User</a></button>
-<button><a href="/myCart/admin">My Cart</a></button>
+    <!-- <h3>Common function</h3> -->
+    <!-- <h3>Admin function</h3> -->
+    <button><a href="/addProdcuts_page">Add new Prodcut</a></button>
+    <button><a href="/products_page">Create Contest</a></button>
+    <button><a href="/products_page">View All Prodcuts</a></button>
+    <button><a href="/history">View All Winners (Contests History)</a></button>
 
-   
+    <h3>User function</h3>
+    <button><a href="/login_page">Login</a></button>
+    <button><a href="/profile/admin">Profile</a></button>
+    <button><a href="/registerUser">Register User</a></button>
+    <button><a href="/myCart/admin">My Cart</a></button>
+
+
 
     <div class="jumbotron">
       <h1>Contests</h1>
 
-      <% if(contests.length > 0){ %>
-    
+      <% if(contests.length> 0){ %>
+
 
         <ul>
-        <% contests.forEach(function(contest) { console.log(contest); %>
-          <li style="border: 5px solid #ccc; list-style: none; display: flex;">
-           
-                 <div style="width: 100px; height: 100px; overflow: hidden;">
-                  <img src="/images/products/<%= contest.pr_thumbnails %>" width="100px" height="100px" />
-                </div>
-              
-              
-             <div>
-              <p>
-                <%= contest.con_status %>
-              </p>
-              <p>
-                Spotes : <%= contest.con_spots %> /  <%= contest.con_total_spots %>
-              </p>
-              <p >
-                <b style="color: rgb(183, 7, 7);">Win</b>  <%= contest.con_win %> 
-                <br/>Buy <b>
-                   <%= contest.pr_name %></b> for  Rs <span style="color: rgb(40, 50, 182);"><%= contest.pr_price %>.00 /- </span>
-               </p>
-               <button><a href="/cart/<%= contest.con_id %>">View Details</a></button>
+          <% contests.forEach(function(contest) { %>
+            <li style="border: 5px solid #ccc; list-style: none; display: flex; position: relative">
+
+              <div class="progress" style="background-color:<%= contest.color %>; width:<%=  contest.width %>%;">
+
+                <p style="color: antiquewhite; font-size: small; padding: 3px; margin:0px">
+                  Spotes : <%= contest.con_spots %> / <%= contest.con_total_spots %> - (<%= contest.width %>%)
+                </p>
               </div>
-              
+
+              <div style="width: 100px; height: 100px; overflow: hidden; ">
+                <img src="/images/products/<%= contest.pr_thumbnails %>" width="100px" height="100px" />
+              </div>
+
+
+              <div>
+
+                <p>
+                  <%= contest.con_status %>
+                </p>
+
+                <p>
+                  <b style="color: rgb(183, 7, 7);">Win</b>
+                  <%= contest.con_win %>
+                    <br />Buy <b>
+                      <%= contest.pr_name %>
+                    </b> for Rs <span style="color: rgb(40, 50, 182);">
+                      <%= contest.pr_price %>.00 /-
+                    </span>
+                </p>
+                <button><a href="/cart/<%= contest.con_id %>">View Details</a></button>
+              </div>
+
               <div style="overflow: hidden;">
                 <img src="/images/contest_cover/<%= contest.con_thumbnails %>" width="200px" height="150px" />
-                <p style="opacity: 0.5;">
-                  <%= contest.con_startdate %>
+                <p style="opacity: 0.5;  font-size: 15px;">
+                  <%= contest.con_enddate %>
                 </p>
-              </div>            
-            
-          </li>
-          <% }); %>
-      </ul>
-      <% } else{ %>  
-        <p>No Contests Yet</p>
-     <% } %>
+              </div>
+
+            </li>
+            <% }); %>
+        </ul>
+        <% } else{ %>
+          <p>No Contests Yet</p>
+          <% } %>
     </div>
+
+
+
+    <!-- SOLD OUTS -->
+    <div class="jumbotron">
+      <h1>SOLD OUT</h1>
+
+      <% if(soldouts.length> 0){ %>
+        <ul>
+          <% soldouts.forEach(function(contest) {%>
+            <li style="border: 5px solid #ccc; list-style: none; display: flex;">
+
+              <div style="width: 100px; height: 100px; overflow: hidden;">
+                <img src="/images/products/<%= contest.pr_thumbnails %>" width="100px" height="100px" />
+              </div>
+
+
+              <div>
+                <p>
+                  <%= contest.con_status %>
+                </p>
+                <p>
+                  Spotes : <%= contest.con_spots %> / <%= contest.con_total_spots %>
+                </p>
+                <p>
+                  <b style="color: rgb(183, 7, 7);">Win</b>
+                  <%= contest.con_win %>
+                    <br />Buy <b>
+                      <%= contest.pr_name %>
+                    </b> for Rs <span style="color: rgb(40, 50, 182);">
+                      <%= contest.pr_price %>.00 /-
+                    </span>
+                </p>
+                <button><a href="/cart/<%= contest.con_id %>">View Details</a></button>
+                <button><a href="/print/<%= contest.con_id %>">Print Coupens</a></button>
+
+              </div>
+
+              <div style="overflow: hidden;">
+                <img src="/images/contest_cover/<%= contest.con_thumbnails %>" width="200px" height="150px" />
+                <p style="opacity: 0.5; font-size: 15px;">
+                  <%= contest.con_enddate %>
+                </p>
+              </div>
+
+            </li>
+            <% }); %>
+        </ul>
+        <% } else{ %>
+          <p>No Soldout Contests Yet</p>
+          <% } %>
+    </div>
+
+
+
   </main>
 
 </body>
@@ -84,11 +150,22 @@
     margin-bottom: 10px;
     font-size: 25px;
   }
-  div{
+
+  div {
     margin: 10px;
   }
-  main{padding: 10%; padding-top: 2%;}
 
+  main {
+    padding: 10%;
+    padding-top: 2%;
+  }
+
+  .progress {
+    position: absolute;
+    top: -13px;
+    left: -10px;
+    /* background-color: black; */
+  }
 </style>
 
 </html>

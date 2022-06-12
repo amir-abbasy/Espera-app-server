@@ -9,15 +9,11 @@
 <body>
 
   <!-- NAVIGATION -->
-    <!-- <%- include('./nav'); %> -->
+    <%- include('./nav'); %>
 
 
 
 <main>
-
-
-  <button><a href="/">Home</a></button>
-
 
 
     <div class="jumbotron">
@@ -38,7 +34,7 @@
              <p>
                Rs <%= product.pr_price %> /-
              </p>
-             <button ><a href="/createContest/<%= product.id %>">Create contest on this product</a></button>
+             <button ><a href="/createContest/<%= product.pr_id %>">Create contest on this product</a></button>
           </li>
         <% }); %>
       </ul>

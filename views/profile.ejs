@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./head'); %>
+</head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+  <%- include('./nav'); %>
+
+
+  <main>
+
+
+    <button><a href="/">Home</a></button>
+    <div>
+      <h1>My Profile</h1>
+
+      <p>
+        <%=user.user_id%>
+      </p>
+      <p>
+        <%=user.username%>
+      </p>
+
+      <h1>My Coupens</h1>
+
+<div>
+
+      <% if(myCoupens.length> 0){ %>
+        <ul>
+          <% myCoupens.forEach(function(coupen) { %>
+            <li style="border: 5px solid #ccc; list-style: none;">
+              <p>  Draw Date : <%= coupen.con_enddate %></p>
+                <h1 style="line-height: 0px">
+                  <%= coupen.coupen %> 
+                </h1>
+                <p>
+                <%= coupen.id %>
+                <%= coupen.order_id %>
+                <%= coupen.contest_id %>
+                <%= coupen.product_id %>
+                <%= coupen.user_id %>
+                <%= coupen.coupen %>
+                <%= coupen.order_status %>
+                <%= coupen.quantity %>
+                <%= coupen.order_date %>
+                <%= coupen.con_id %>
+                <%= coupen.con_status %>
+                <%= coupen.con_total_spots %>
+                <%= coupen.con_spots %>
+                <%= coupen.con_startdate %>
+              
+                <%= coupen.con_win %>
+                <%= coupen.con_discription %>
+                <%= coupen.con_thumbnails %>
+                <%= coupen.con_winner %>
+                <%= coupen.con_winnerCoupen %>
+                <%= coupen.pr_id %>
+                <%= coupen.pr_name %>
+                <%= coupen.pr_price %>
+                <%= coupen.pr_discription %>
+                <%= coupen.pr_thumbnails %>
+              </p>
+            </li>
+            <% }); %>
+        </ul>
+        <% } else{ %>
+          <p>No Contests Yet</p>
+          <% } %>
+
+        </div>
+
+            <form method='POST' action="/contest/goToPayment">
+              <input type="submit" value="Update spent">
+            </form>
+
+
+    </div>
+  </main>
+
+
+
+</body>
+<style>
+  p {
+    font-size: 14px;
+  }
+
+  li {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 5px solid rgb(201, 201, 201);
+    list-style: none;
+  }
+
+
+  body {
+    /* display: flex; 
+    justify-content: center; */
+    /* background-color: rgba(153, 0, 255, 0.247); */
+    font-family: 'Roboto Condensed', sans-serif;
+
+  }
+
+  main {
+    padding: 10%;
+    padding-top: 2%;
+  }
+
+
+  .container {
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+
+  input {
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  input[type="submit"] {
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+    width: 100%;
+
+  }
+
+  input:hover {
+    border: 2px solid #000;
+  }
+
+  button {
+    background-color: rgb(24, 24, 24);
+    color: aliceblue;
+    margin: 15px;
+    padding: 15px;
+    border: 0px;
+
+  }
+
+  button a {
+    text-decoration: none;
+    color: #fff
+  }
+
+  button a:hover {
+    color: rgb(0, 255, 98);
+  }
+
+
+  nav li {
+    list-style: none;
+  }
+
+  .updateQuantity {
+    margin-top: 20px;
+    background-color: rgb(214, 214, 214);
+    padding: 10px;
+  }
+
+  .details {
+    display: flex
+  }
+
+  .details div {
+    margin-left: 20px;
+  }
+</style>
+
+</html>

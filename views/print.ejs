@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Coupens (<%= contestTitle %>)</title>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+            /* margin: 1mm */
+        }
+
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 32%;
+            padding: 10px;
+            border-bottom: 2px solid #000;
+            border-top: 0px;
+            border-left: 0px;
+            border-right: 1px solid #000;;
+            /* Should be removed. Only for demonstration */
+        }
+        
+        .column h2{
+            font-size: 16px;
+            padding: 0px;
+            margin: auto;
+            text-transform: uppercase;
+            /* text-align: center; */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+<%- include('./nav'); %>
+
+
+    <div class="row">
+        <% if(contest_coupons.length> 0){ %>
+            <% contest_coupons.forEach(function(coupen) {%>
+                <div class="column" style="background-color:#fff;">
+                    <h2>
+                        <%= coupen.coupen %>
+                    </h2>
+                </div>
+
+                <% }); %>
+                    <% } else{ %>
+                        <p>No Soldout Contests Yet</p>
+         <% } %>
+    </div>
+
+
+</body>
+
+</html>

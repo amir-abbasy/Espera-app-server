@@ -9,16 +9,8 @@
 <body>
 
   <!-- NAVIGATION -->
-  <!-- <%- include('./nav'); %> -->
-
-
+  <%- include('./nav'); %>
   <main>
-
-
-    <button><a href="/">Home</a></button>
-  
-  
-  
       <div >
         <h1>My Cart</h1>
         <ul>
@@ -74,8 +66,7 @@
     </form>
             
     
-    <!-- <button ><a href="/contest/goToPayment/<%=cart.id%>">Buy</a></button> -->
-    <form method='POST' action="/contest/goToPayment/<%=cart.order_id%>/<%=cart.contest_id%>/<%=cart.con_spots%>" >
+      <form method='POST' action="/contest/goToPayment/<%=cart.order_id%>/<%=cart.contest_id%>" >
       <input type="submit" value="Buy">
   </form>
 

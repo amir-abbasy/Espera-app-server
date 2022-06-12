@@ -55,12 +55,11 @@ Content-Type: application/json
 
 ###
 
-POST {{baseUrl}}/updateQuantity/2
+POST {{baseUrl}}/updateQuantity/ordr_02cd2a6a1699
 Content-Type: application/json
 
 {
-    "id": "2",
-    "quantity": "6"
+    "quantity": "5"
 }
 ###
 POST {{baseUrl}}/goToPayment/2
@@ -73,5 +72,5 @@ Content-Type: application/json
 ###
 
 
-GET {{baseUrl}}/getMyOrders/admin/oncart
+GET {{baseUrl}}/getMyOrders/usr_5afd1340dded/oncart
 ### /user_id/order_status

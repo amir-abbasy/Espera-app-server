@@ -4,7 +4,11 @@ CREATE TABLE users (
     username varchar(255) NOT NULL,
     fullname varchar(255) NOT NULL,
     user_password varchar(255) NOT NULL,
-    mobile varchar(255) NOT NULL
+    email varchar(255) NOT NULL,
+    profile_pic varchar(255),
+    mobile varchar(255) ,
+    user_address varchar(255), 
+    total_spent varchar(255) 
 );
 
 

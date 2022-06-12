@@ -1,5 +1,5 @@
 const multer = require("multer");
-
+const { v4: uuidv4 } = require('uuid');
 const ProductModel = require("../../models/data/ProductModel");
 var upload = require("../../utils/file_uploader");
 
@@ -36,7 +36,7 @@ const ProductController = {
     // const table = req.params.table
     const fields = req.body;
     console.log("====", fields);
-      var fields_ = {...fields, pr_id: 'pr_1' ,pr_thumbnails: req.file.filename};
+      var fields_ = {...fields, pr_id: 'pr_'+uuidv4().split('-')[4] ,pr_thumbnails: req.file.filename};
       new ProductModel().addData(table, fields_, (err, results) => {
         if (err) res.send("ERR");
         else {

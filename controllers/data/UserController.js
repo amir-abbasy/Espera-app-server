@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 const UserModel  = require('../../models/data/UserModel')
 
 
@@ -27,7 +28,7 @@ const UserController = {
     addUser:(req, res)=>{
         // const table = req.params.table
         const fields = req.body
-        var user_id = 'user_id_1'
+        var user_id = 'usr_'+uuidv4().split('-')[4];
         new UserModel().addData(table, {...fields, user_id: user_id}, (err, results)=>{
             if(err) {
                 console.log(">",err);
@@ -74,7 +75,17 @@ const UserController = {
             
             }
         })
-    }
+    },
+    getMyCoupens:(req, res)=>{
+        // const table = req.params.table
+        const user_id = req.params.user_id
+        const status = req.params.status
+        console.log("===", _id);
+        new UserModel().getMyCoupens({user_id, status}, (err, results)=>{
+            if(err) res.send("ERR")
+            else res.send(results)
+        })
+    },
 }
 
 module.exports = UserController

@@ -10,14 +10,16 @@ router.post('/createContest', ContestController.createContest)
 router.post('/updateContest', ContestController.updateContest)
 router.delete('/deleteContest', ContestController.deleteContest)
 
-router.get('/getContestAll', ContestController.getAllWithProducts)
+router.get('/getContestsActive', ContestController.getAativeWithProducts)
+router.get('/getContestsSoldout', ContestController.getSolduutWithProducts)
 router.get('/getOneWithProduct/:contest_id', ContestController.getOneWithProduct)
+router.get('/getAllCoupons/:contest_id', ContestController.getAllCoupons)
 
 router.get('/orderSpot/:user_id/:contest_id/:product_id', ContestController.orderSpot)
 // router.get('/getMyOrders/:user_id/:type', ContestController.getMyOrders)
 router.get('/getMyOrders/:user_id/:status', ContestController.getMyOrders)
 router.post('/updateQuantity/:order_id', ContestController.updateQuantity)
-router.post('/goToPayment/:order_id/:contest_id/:spots', ContestController.goToPayment)
+router.post('/goToPayment/:order_id/:contest_id', ContestController.goToPayment)
 
 
 
