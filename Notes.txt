@@ -22,13 +22,6 @@ These are the username and password to log in to your database and phpMyAdmin
 
 //////////////   TASKS  ////////////////
 
-- my coupens
-- wish list
-- referrel login 
+- update draw Date
 - reset password 
-- curosal 
-
-bknd
-
-- draw function (update winner, change status)
-- 
+- wish list

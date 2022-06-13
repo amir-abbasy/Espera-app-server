@@ -172,9 +172,29 @@ app.get('/print/:con_id', (req, res) => {
       contestTitle: req.params.con_id
     })
   })
-
-
 })
+
+app.get('/history', (req, res) => {
+  new ContestModel().getHistory((err, results) => {
+    if (err) res.send("ERR : " + err)
+    else res.render('history', {
+      history: results
+    })
+  })
+})
+
+
+app.get('/newReferrals', (req, res) => {
+  new UserModel().getNewReferrals((err, results) => {
+    if (err) res.send("ERR : " + err)
+    else res.render('newReferrals', {
+      referrals: results
+    })
+  })
+})
+
+
+
 
 
 app.use('/data', require('./routers/data/dataRouter'))

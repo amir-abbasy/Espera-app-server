@@ -8,7 +8,9 @@ CREATE TABLE users (
     profile_pic varchar(255),
     mobile varchar(255) ,
     user_address varchar(255), 
-    total_spent varchar(255) 
+    total_spent varchar(255),
+    isStaff BOOLEAN DEFAULT 0,
+    referrelUserId varchar(255)
 );
 
 
@@ -47,6 +49,32 @@ CREATE TABLE orders_spots (
     order_status varchar(255) NOT NULL, -- oncart, shipped, deliverd, canceled, completed
     quantity varchar(255) NOT NULL, 
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE referrals (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ref_id varchar(255) NOT NULL,
+    user_id varchar(255) NOT NULL,
+    ref_status varchar(255) NOT NULL, -- pending, credited
+    entry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE notifications (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    notify_id varchar(255) NOT NULL,
+    notify_message varchar(255) NOT NULL, -- unread, read
+    user_id varchar(255) NOT NULL,
+    notify_status varchar(255) NOT NULL, -- unread, read
+    entry_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE wishLists (
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    con_id varchar(255) NOT NULL,
+    user_id varchar(255) NOT NULL
 );
 
 

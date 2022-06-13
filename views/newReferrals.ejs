@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('./head'); %>
+</head>
+
+
+<body>
+
+  <!-- NAVIGATION -->
+  <%- include('./nav'); %>
+    <main>
+      <div>
+        <h1>New Referrals</h1>
+        <ul>
+          <% referrals.forEach(function(item) { %>
+            <li>
+
+              <div class="details">
+
+                <div>
+
+                  <strong>Staff : <%= item.username %></strong></br>
+                  name : <%= item.fullname %></br>
+
+
+                </div>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
+    </main>
+
+
+
+</body>
+<style>
+  p {
+    line-height: 0px;
+  }
+
+  li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 5px solid rgb(201, 201, 201);
+    list-style: none;
+    margin-top: 40px;
+  }
+
+
+  body {
+    /* display: flex; 
+    justify-content: center; */
+    /* background-color: rgba(153, 0, 255, 0.247); */
+    font-family: 'Roboto Condensed', sans-serif;
+
+  }
+</style>
+
+</html>

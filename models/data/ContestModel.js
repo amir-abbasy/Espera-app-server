@@ -79,12 +79,22 @@ INNER JOIN products ON orders_spots.product_id = products.pr_id) WHERE orders_sp
     this.db.query(sql, callback);
   };
 
-
   getAllCoupons = (obj, callback) => {
     // con_243636b913cf
     let sql = `SELECT coupen FROM orders_spots WHERE contest_id = '${obj.contest_id}'`;
     this.db.query(sql, callback);
   };
+
+  setWinner = (obj, callback) => {
+    let sql = `UPDATE contests SET con_winner = (SELECT user_id FROM orders_spots WHERE coupen = '${obj.winnerCoupen}') , con_winnerCoupen = '${obj.winnerCoupen}', con_status = 'complete' WHERE con_id = '${obj.contest_id}'`;
+    this.db.query(sql, callback);
+  };
+
+  getHistory = (callback) => {
+    let sql = `SELECT * from contests INNER JOIN users ON contests.con_winner = users.user_id WHERE con_status = 'complete'`;
+    this.db.query(sql, callback);
+  };
+
 
 }
 

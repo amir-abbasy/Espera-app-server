@@ -44,3 +44,14 @@ Content-Type: application/json
 "id": "25"
 }
 
+###
+POST {{baseUrl}}/addToRefferal
+Content-Type: application/json
+
+{
+"ref_id" : "refidh87",
+"user_id" : "usr_dfsdf",
+"ref_status" : "pending",
+"entry_date" : "2022-05-05"
+}
+

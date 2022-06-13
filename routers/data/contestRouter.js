@@ -19,15 +19,20 @@ router.get('/orderSpot/:user_id/:contest_id/:product_id', ContestController.orde
 // router.get('/getMyOrders/:user_id/:type', ContestController.getMyOrders)
 router.get('/getMyOrders/:user_id/:status', ContestController.getMyOrders)
 router.post('/updateQuantity/:order_id', ContestController.updateQuantity)
+
 router.post('/goToPayment/:order_id/:contest_id', ContestController.goToPayment)
 
+router.post('/setWinner', ContestController.setWinner)
+router.get('/getHistory', ContestController.getHistory)
 
 
 
-  // define the home page route
+
+
+// define the home page route
 router.get('/test', (req, res) => {
-    res.send('Birds home page')
-  })
+  res.send('Birds home page')
+})
 
 
 module.exports = router;

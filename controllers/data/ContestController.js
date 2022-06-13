@@ -168,7 +168,29 @@ const ContestController = {
         else res.status(200).send(results);
       }
     );
-  }
-};
+  },
 
+  setWinner: (req, res) => {
+    var winner_body = req.body;
+    // winner , winnerCoupen, contest_id
+    new ContestModel().setWinner(
+      { ...winner_body, winner: 'select name'},
+      (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else res.status(200).send(results);
+      }
+    );
+  },
+
+  getHistory: (req, res) => {
+    new ContestModel().getHistory(
+      (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else res.status(200).send(results);
+      }
+    );
+  }
+
+
+}
 module.exports = ContestController;

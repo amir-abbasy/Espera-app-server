@@ -74,3 +74,21 @@ Content-Type: application/json
 
 GET {{baseUrl}}/getMyOrders/usr_5afd1340dded/oncart
 ### /user_id/order_status
+
+
+POST {{baseUrl}}/setWinner
+Content-Type: application/json
+
+{
+    "winner": "usr_5afd1340dded",
+    "winnerCoupen": "coup_43abb56fb267",
+    "contest_id": "con_1488635dc693"
+}
+###
+
+
+
+GET {{baseUrl}}/getHistory
+###
+
+
