@@ -63,3 +63,13 @@ Content-Type: application/json
 "mobile" : "test filed"
 }
 
+
+
+###
+
+
+GET {{baseUrl}}/getEndingSpots
+###
+
+GET {{baseUrl}}/getCovers
+###

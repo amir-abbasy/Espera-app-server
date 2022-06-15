@@ -10,6 +10,9 @@ router.post('/updateUser/:table', DataController.updateUser)
 router.delete('/deleteData/:table', DataController.deleteData)
 router.post('/test', DataController.test)
 
+router.get('/getEndingSpots', DataController.getEndingSpots)
+router.get('/getCovers', DataController.getCovers)
+
 
 
 

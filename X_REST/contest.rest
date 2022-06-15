@@ -10,7 +10,7 @@ GET {{baseUrl}}/getContests/id
 GET {{baseUrl}}/getContestAll
 ###
 
-GET {{baseUrl}}/getOneWithProduct/con_1
+GET {{baseUrl}}/getOneWithProduct/con_243636b913cf
 ###
 
 GET {{baseUrl}}/getHistory
@@ -97,5 +97,4 @@ Content-Type: application/json
 
 GET {{baseUrl}}/getHistory
 ###
-
 
