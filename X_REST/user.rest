@@ -2,11 +2,12 @@
 @baseUrl =  http://localhost:4000/user
 
 GET {{baseUrl}}/getUser/username/amir
-
-
 ###
 
 GET {{baseUrl}}/getUsers/username
+###
+
+GET {{baseUrl}}/getMyAddress/usr_5afd1340dded
 ###
 
 POST {{baseUrl}}/addUser

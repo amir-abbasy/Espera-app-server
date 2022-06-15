@@ -11,7 +11,7 @@ router.post('/updateContest', ContestController.updateContest)
 router.delete('/deleteContest', ContestController.deleteContest)
 
 router.get('/getContestsActive', ContestController.getAativeWithProducts)
-router.get('/getContestsSoldout', ContestController.getSolduutWithProducts)
+router.get('/getContestsSoldout', ContestController.getSoldoutWithProducts)
 router.get('/getOneWithProduct/:contest_id', ContestController.getOneWithProduct)
 router.get('/getAllCoupons/:contest_id', ContestController.getAllCoupons)
 

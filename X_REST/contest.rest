@@ -13,6 +13,13 @@ GET {{baseUrl}}/getContestAll
 GET {{baseUrl}}/getOneWithProduct/con_1
 ###
 
+GET {{baseUrl}}/getHistory
+###
+
+
+GET {{baseUrl}}/getContestsSoldout
+###
+
 
 GET {{baseUrl}}/getMyOrders/25
 ###

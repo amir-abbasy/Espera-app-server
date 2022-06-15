@@ -69,13 +69,13 @@ const ContestController = {
     });
   },
   getAativeWithProducts: async (req, res) => {
-    await new ContestModel().getAllWithProducts((err, results) => {
+    await new ContestModel().getActiveWithProducts((err, results) => {
       if (err) res.status(202).send("ERR");
       else res.status(200).send(results);
     });
   },
-  getSolduutWithProducts: async (req, res) => {
-    await new ContestModel().getAllWithProducts((err, results) => {
+  getSoldoutWithProducts: async (req, res) => {
+    await new ContestModel().getSoldoutWithProducts((err, results) => {
       if (err) res.status(202).send("ERR");
       else res.status(200).send(results);
     });
