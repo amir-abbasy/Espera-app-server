@@ -46,9 +46,9 @@ class Model {
     * @param {id} id
     * @param {err,results()=>{}} callback
     */
-     deleteData = (table, id, callback) => {
-        let sql = `DELETE FROM ${table} WHERE id = ?`;
-        this.db.query(sql, id, callback);
+     delete = (table, field, value, callback) => {
+        let sql = `DELETE FROM ${table} WHERE ?? = ?`;
+        this.db.query(sql, [field, value], callback);
     }
     
     

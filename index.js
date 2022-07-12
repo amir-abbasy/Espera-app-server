@@ -140,10 +140,9 @@ app.get('/myCoupens/:user', (req, res) => {
 
 
 app.get('/profile/:user', (req, res) => {
-  new UserModel().getOne('users', 'username', 'admin', (err, results) => {
+  new UserModel().getOne('users', 'user_id', 'usr_admin', (err, results) => {
 
-    new UserModel().getMyCoupens((err_, coupen_result) => {
-      // console.log("results", results);
+    new UserModel().getMyCoupens({user_id: results[0]['user_id']},(err_, coupen_result) => {
       if (err_) res.send("ERR : " + err_)
       // else res.render('profile', {
       //   user: results[0]
@@ -165,10 +164,9 @@ app.get('/profile/:user', (req, res) => {
 app.get('/print/:con_id', (req, res) => {
   new ContestModel().getAllCoupons({ contest_id: req.params.con_id }, (err, results) => {
     // console.log("results", results);
-    var test = [...results, ...results, ...results, ...results, ...results, ...results, ...results]
     if (err) res.send("ERR : " + err)
     else res.render('print', {
-      contest_coupons: [...test, ...test, ...test, ...test],
+      contest_coupons: results,
       contestTitle: req.params.con_id
     })
   })

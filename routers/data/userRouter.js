@@ -8,7 +8,7 @@ router.get('/getUser/:field/:value', UserController.getOne)
 router.get('/getUsers/:field', UserController.getUsers)
 router.post('/addUser', UserController.addUser)
 router.post('/updateUser', UserController.updateUser)
-router.delete('/deleteData', UserController.deleteUser)
+router.delete('/deleteUser', UserController.deleteUser)
 
 router.post('/login', UserController.login)
 router.get('/getStaff/:user_id', UserController.getStaff)

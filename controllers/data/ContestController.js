@@ -189,7 +189,18 @@ const ContestController = {
         else res.status(200).send(results);
       }
     );
+  },
+
+  removeFromCart: (req, res) => {
+    console.log("HeRe", req.body);
+    new ContestModel().delete('orders_spots','order_id',req.body.order_id,
+      (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else res.status(200).send(results);
+      }
+    );
   }
+
 
 
 }

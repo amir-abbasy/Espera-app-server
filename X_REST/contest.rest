@@ -98,3 +98,13 @@ Content-Type: application/json
 GET {{baseUrl}}/getHistory
 ###
 
+
+
+POST {{baseUrl}}/removeFromCart
+Content-Type: application/json
+
+{
+    "order_id": "ordr_56a44d5bda00"
+}
+###
+
