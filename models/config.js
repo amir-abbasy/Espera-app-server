@@ -7,6 +7,7 @@ const host =  ENV.NODE_ENV ==  'dev' ? ENV.HOST2 : ENV.HOST;
 const user =  ENV.NODE_ENV ==  'dev' ? ENV.USER2 : ENV.USER;
 const password = ENV.NODE_ENV ==  'dev' ? ENV.PASS2 : ENV.PASS;
 const database = ENV.NODE_ENV ==  'dev' ? ENV.DB2 : ENV.DB;
+const port = ENV.NODE_ENV ==  'dev' ? 3306 : ENV.DB_PORT;
 
 console.log(host, user, password, database);
 
@@ -16,6 +17,7 @@ console.log(host, user, password, database);
    user,
    password,
    database,
+   port
 
 // host: 'remotemysql.com',
 // user:'FehCWiaq69',
