@@ -40,7 +40,10 @@ const UserController = {
             (err, results) => {
               if (err) {
                 console.log(">", err);
-                res.send("add user error" + err);
+                res.send({
+                  status: false,
+                  message: "adding user error",
+                });
               }
               var ref = {
                 ref_id: req.body.referrelUserId,
@@ -51,8 +54,15 @@ const UserController = {
               new UserModel().addToReferral(ref, (err_, results_) => {
                 if (err_) {
                   console.log(">", err_);
-                  res.send("referral adding error" + err_);
-                } else res.send("User Added Successfully" + results_);
+                  res.send({
+                    status: false,
+                    message: "referral adding error",
+                  });
+                } else
+                  res.send({
+                    status: true,
+                    message: "User Added Successfully",
+                  });
               });
             }
           );
@@ -88,7 +98,7 @@ const UserController = {
       (err, results) => {
         if (err) res.send("ERR" + err);
         else {
-          console.log("====", results);
+          // console.log("====", results);
           if (results.length != 0) {
             if (results[0].user_password == req.body.user_password) {
               console.log("go now");
@@ -144,6 +154,48 @@ const UserController = {
     new UserModel().addToReferral(body, (err, results) => {
       if (err) res.send("ERR" + err);
       else res.send(results);
+    });
+  },
+
+  addToWishList: (req, res) => {
+    const body = req.body;
+    new UserModel().addToWishList(body, (err, results) => {
+      if (err) res.send("ERR" + err);
+      else res.send("Contest added to wishlist successfully");
+    });
+  },
+
+  removeFromWishList: (req, res) => {
+    const itemId = req.body.item_id;
+    new UserModel().delete("wishlists", "id", itemId, (err, results) => {
+      if (err) res.send("ERR" + err);
+      else res.send("Contest removed from your wishlist");
+    });
+  },
+
+  getWishLists: (req, res) => {
+    const userId = req.body.user_id;
+    new UserModel().getAllFromWishlist(userId, (err, results) => {
+      if (err) res.send({ status: false, error: err });
+      else res.send({ status: true, data: results });
+    });
+  },
+
+  updateLevel: (req, res) => {
+    const userId = req.body.user_id;
+    const last_price = req.body.price;
+    new UserModel().updateLevel(last_price, userId, (err, results) => {
+      if (err) res.send({ status: false, error: err });
+      else res.send({ status: true, data: { message: "User data updated" } });
+    });
+  },
+
+  isUserExists: (req, res) => {
+    var name = req.params.name;
+    new UserModel().isUserExists(name, (err, result) => {
+      var rslt = Object.values(result[0])
+      if (err) res.send({ status: false, error: err });
+      else res.send({ status: true, isUserExists:  rslt[0] == 1 ? true : false});
     });
   },
 };

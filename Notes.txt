@@ -22,6 +22,5 @@ These are the username and password to log in to your database and phpMyAdmin
 
 //////////////   TASKS  ////////////////
 
-- update draw Date
 - reset password 
-- wish list
+- update draw Date

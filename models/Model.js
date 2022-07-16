@@ -54,7 +54,6 @@ class Model {
     
     //get all data from a table in decending order by a field
     getAll = async (table, field, callback) => {
-        console.log("ordre by", field);
         let sql = `SELECT * from ${table} ORDER BY ${field || 'id'} DESC`;
         this.db.query(sql, callback);
     }
@@ -62,7 +61,7 @@ class Model {
     //get all data from a table in filter by a field and order by field
     getAllByField = async (table, field, value, order_field, callback) => {
         let sql = `SELECT * from ?? WHERE ?? =? ORDER BY ?? DESC`;
-        this.db.query(sql, [table, field, value, order_field], callback);
+        this.db.query(sql, [table, field, value, (order_field || 'id')], callback);
     }
 
     

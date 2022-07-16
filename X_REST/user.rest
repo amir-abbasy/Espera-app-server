@@ -56,3 +56,51 @@ Content-Type: application/json
 "entry_date" : "2022-05-05"
 }
 
+
+### wishlist
+
+POST {{baseUrl}}/addToWishList
+Content-Type: application/json
+
+{
+"con_id" : "con_d5eee96e237a",
+"user_id" : "usr_20e104abc603"
+}
+
+### remove from wishlist
+DELETE  {{baseUrl}}/removeFromWishList
+Content-Type: application/json
+
+{
+"item_id" : 2
+}
+
+
+### get user wishlist
+GET  {{baseUrl}}/getWishLists
+Content-Type: application/json
+
+{
+"user_id" : "usr_20e104abc603"
+}
+
+
+### update level
+POST   {{baseUrl}}/updateLevel
+Content-Type: application/json
+
+{
+"price": 255,
+"user_id" : "usr_20e104abc603"
+}
+
+
+
+### get staff
+GET {{baseUrl}}/getStaff/usr_admin
+
+
+### get is user exists
+GET {{baseUrl}}/isUserExists/ammar
+
+# reset password

@@ -154,10 +154,13 @@ const ContestController = {
       { contest_id },
       (err, results) => {
         if (err) res.status(202).send("ERR" + err);
-        else res.status(200).send(results);
+        else res.status(200).send({status: true, data: {message: 'Order Created successfully'}});
       }
     );
   },
+
+
+ 
 
   getAllCoupons: (req, res) => {
     var contest_id = req.params.contest_id;
@@ -192,7 +195,6 @@ const ContestController = {
   },
 
   removeFromCart: (req, res) => {
-    console.log("HeRe", req.body);
     new ContestModel().delete('orders_spots','order_id',req.body.order_id,
       (err, results) => {
         if (err) res.status(202).send("ERR" + err);

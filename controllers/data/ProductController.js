@@ -59,7 +59,7 @@ const ProductController = {
   deleteProduct: (req, res) => {
     // const table = req.params.table
     const _id = req.body.id;
-    new ProductModel().deleteData(table, _id, (err, results) => {
+    new ProductModel().delete(table, 'pr_id', _id, (err, results) => {
       if (err) res.send("ERR");
       else res.send(results);
     });
