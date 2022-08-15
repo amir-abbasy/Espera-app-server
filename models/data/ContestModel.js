@@ -32,7 +32,6 @@ class ContestModel extends Model {
   };
 
   updateQuantity = (obj, callback) => {
-    console.log("HRER", obj.id);
     let sql = `UPDATE orders_spots SET quantity =${obj.quantity} WHERE order_id = '${obj.id}'`;
     this.db.query(sql, callback);
   };
@@ -69,7 +68,9 @@ INNER JOIN products ON orders_spots.product_id = products.pr_id) WHERE orders_sp
   };
 
   updateSpot = (obj, callback) => {
-    let sql = `UPDATE orders_spots SET order_status ='${obj.order_status}' WHERE order_id = '${obj.order_id}'`;
+    // let sql = `UPDATE orders_spots SET order_status ='${obj.order_status}' WHERE order_id = '${obj.order_id}'`;
+    // var order_ids = obj.order_id.map(_=> _)
+    let sql = `UPDATE orders_spots SET order_status ='${obj.order_status}' WHERE order_id IN ('ordr_612644dcd242', 'ordr_1ef4a6e22b8b' )`
     this.db.query(sql, callback);
   };
 

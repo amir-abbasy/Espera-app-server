@@ -215,6 +215,11 @@ app.get("/newReferrals", (req, res) => {
   });
 });
 
+
+app.get("/viewUpdateDrawDate/:id", (req, res) => {
+ res.render("updateDrawDate", {contest_id: req.params.id});
+});
+
 app.use("/data", require("./routers/data/dataRouter"));
 app.use("/user", require("./routers/data/userRouter"));
 app.use("/contest", require("./routers/data/contestRouter"));

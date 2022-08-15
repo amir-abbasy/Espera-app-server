@@ -40,7 +40,6 @@ const ContestController = {
         con_thumbnails: req.file.filename,
         con_spots: 0
       };
-      console.log("====", fields);
       new ContestModel().addData(table, fields, (err, results) => {
         if (err) res.status(202).send("ERR" + err);
         else {
@@ -138,6 +137,17 @@ const ContestController = {
 
   goToPayment: (req, res) => {
     var order_id = req.params.order_id;
+    new ContestModel().updateSpot(
+      { order_id, order_status: "complete" },
+      (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        // else res.status(200).send(results);
+        // else console.log('spot status updated');
+      }
+    )
+  },
+  goToPayment_: (req, res) => {
+    var order_id = req.params.order_id;
     var contest_id = req.params.contest_id;
     // var current_spots = req.params.spots;
 
@@ -202,7 +212,15 @@ const ContestController = {
       }
     );
   }
-
+,
+updateContestDrawDate: (req, res) => {
+  const fields = req.body;
+  console.log("--------",fields);
+  // new ContestModel().update(table, {}, (err, results) => {
+  //   if (err) res.status(202).send("ERR");
+  //   else res.status(200).send(results);
+  // });
+},
 
 
 }

@@ -1,5 +1,7 @@
 
 @baseUrl =  http://localhost:4000/user
+# @baseUrl =  https://coupen.herokuapp.com/user
+
 
 GET {{baseUrl}}/getUser/username/amir
 ###
@@ -72,17 +74,12 @@ DELETE  {{baseUrl}}/removeFromWishList
 Content-Type: application/json
 
 {
-"item_id" : 2
+"item_id" : 7
 }
 
 
 ### get user wishlist
-GET  {{baseUrl}}/getWishLists
-Content-Type: application/json
-
-{
-"user_id" : "usr_20e104abc603"
-}
+GET  {{baseUrl}}/getWishLists/usr_20e104abc603
 
 
 ### update level
@@ -103,4 +100,11 @@ GET {{baseUrl}}/getStaff/usr_admin
 ### get is user exists
 GET {{baseUrl}}/isUserExists/ammar
 
-# reset password
+### reset password
+POST   {{baseUrl}}/resetPassword
+Content-Type: application/json
+
+{
+"user_id" : "usr_20e104abc603",
+"email" : "ammarvady@gmail.com"
+}

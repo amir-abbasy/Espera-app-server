@@ -50,6 +50,11 @@ class UserModel extends Model {
     let sql = `SELECT EXISTS(SELECT 1 FROM users WHERE username = '${username}');`
     this.db.query(sql, callback);
     };
+
+    updatePassword = async (obj, callback) => {
+      let sql = `UPDATE users SET user_password ='${obj.new_password}' WHERE user_id = '${obj.user_id}'`;
+      this.db.query(sql, callback);
+    };
   
 }
 

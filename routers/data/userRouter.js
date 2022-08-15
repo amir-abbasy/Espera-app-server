@@ -16,12 +16,15 @@ router.get('/getMyAddress/:user_id', UserController.getMyAddress)
 router.post('/updateMyAddress', UserController.updateMyAddress)
 router.post('/addToRefferal', UserController.addToRefferal)
 
-router.get('/getWishLists', UserController.getWishLists)
+router.get('/getWishLists/:user_id', UserController.getWishLists)
 router.post('/addToWishList', UserController.addToWishList)
 router.delete('/removeFromWishList', UserController.removeFromWishList)
 
 router.post('/updateLevel', UserController.updateLevel)
 router.get('/isUserExists/:name', UserController.isUserExists)
+
+router.post('/resetPassword', UserController.resetPassword)
+
 
 
 

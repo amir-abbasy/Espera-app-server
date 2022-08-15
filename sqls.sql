@@ -71,7 +71,7 @@ CREATE TABLE notifications (
 );
 
 
-CREATE TABLE wishLists (
+CREATE TABLE wishlists (
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     con_id varchar(255) NOT NULL,
     user_id varchar(255) NOT NULL

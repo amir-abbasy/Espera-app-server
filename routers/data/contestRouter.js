@@ -24,6 +24,8 @@ router.post('/goToPayment/:order_id/:contest_id', ContestController.goToPayment)
 
 router.post('/setWinner', ContestController.setWinner)
 router.get('/getHistory', ContestController.getHistory)
+router.post('/updateContestDrawDate', ContestController.updateContestDrawDate)
+
 
 // delete
 router.post('/removeFromCart', ContestController.removeFromCart)

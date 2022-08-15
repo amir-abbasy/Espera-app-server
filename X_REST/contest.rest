@@ -108,3 +108,20 @@ Content-Type: application/json
 }
 ###
 
+
+POST {{baseUrl}}/updateContestDrawDate
+Content-Type: application/json
+
+{
+    "order_id": "ordr_56a44d5bda00"
+}
+###
+
+
+POST {{baseUrl}}/goToPayment/orderId56546/conId5465
+Content-Type: application/json
+
+{
+    "order_id": "ordr_56a44d5bda00"
+}
+###

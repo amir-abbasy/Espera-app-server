@@ -22,5 +22,12 @@ These are the username and password to log in to your database and phpMyAdmin
 
 //////////////   TASKS  ////////////////
 
-- reset password 
 - update draw Date
+* reset password
+ 
+* wishlist
+* multiple order
+- cash
+* Notifications
+
+- remove donation

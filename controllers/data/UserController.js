@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require("uuid");
 const UserModel = require("../../models/data/UserModel");
+const mailer = require("../../utils/mailer");
 
 const table = "users";
 
@@ -174,7 +175,7 @@ const UserController = {
   },
 
   getWishLists: (req, res) => {
-    const userId = req.body.user_id;
+    const userId = req.params.user_id;
     new UserModel().getAllFromWishlist(userId, (err, results) => {
       if (err) res.send({ status: false, error: err });
       else res.send({ status: true, data: results });
@@ -197,6 +198,22 @@ const UserController = {
       if (err) res.send({ status: false, error: err });
       else res.send({ status: true, isUserExists:  rslt[0] == 1 ? true : false});
     });
+  },
+  resetPassword:(req, res)=>{
+    var newPassword =  uuidv4().split("-")[4]
+    var mailOptions = {
+      from: 'amirabbasyk@gmail.com',
+      to: req.body.email,
+      subject: 'Espera account New password ',
+      text: 'Your new password is: '+ newPassword
+    };
+
+    mailer(mailOptions,(msg)=>{
+      new UserModel().updatePassword({user_id: req.body.user_id, new_password: newPassword}, (err, result) => {
+        if (err) res.send({ status: false, error: err });
+        else res.send({ status: true, message: "Password reseted successfully, check your email. "+msg});
+      });
+    })
   },
 };
 
