@@ -2,6 +2,7 @@ const multer = require("multer");
 const { v4: uuidv4 } = require('uuid');
 var upload = require("../../utils/file_uploader");
 const ContestModel = require("../../models/data/ContestModel");
+const notify = require("../../utils/message");
 
 const table = "contests";
 
@@ -46,6 +47,8 @@ const ContestController = {
           res.status(200).send("Contest Created Successfully");
           // res.redirect('product/addProdcuts_page')
           console.log("SUCCESS");
+          // push notification
+          notify()
         }
       });
     });
@@ -115,8 +118,9 @@ const ContestController = {
         quantity: 1,
       },
       (err, results) => {
+        console.log("==>", err, results);
         if (err) res.status(202).send("ERR : " + err);
-        else res.status(200).send(results);
+        else res.status(200).send({message: 'Added to cart succesfully updated', data: results });
       }
     );
   },
@@ -136,9 +140,9 @@ const ContestController = {
   },
 
   goToPayment: (req, res) => {
-    var order_id = req.params.order_id;
+    var order_ids = req.body.order_ids
     new ContestModel().updateSpot(
-      { order_id, order_status: "complete" },
+      { order_ids, order_status: "complete" },
       (err, results) => {
         if (err) res.status(202).send("ERR" + err);
         // else res.status(200).send(results);

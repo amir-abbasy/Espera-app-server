@@ -25,9 +25,16 @@ These are the username and password to log in to your database and phpMyAdmin
 - update draw Date
 * reset password
  
-* wishlist
 * multiple order
 - cash
 * Notifications
 
 - remove donation
+
+
+finalize
+
+- wishlist
+- payment
+- products
+- pick up/donate

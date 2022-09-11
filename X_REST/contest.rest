@@ -122,6 +122,10 @@ POST {{baseUrl}}/goToPayment/orderId56546/conId5465
 Content-Type: application/json
 
 {
-    "order_id": "ordr_56a44d5bda00"
+    "order_ids": ["ordr_56a44d5bda00", "ordr_56a44d5bda02"]
 }
+###
+
+
+GET {{baseUrl}}/orderSpot/usr_20e104abc603/con_091b63220f9a/pr_23c95e90638a
 ###
