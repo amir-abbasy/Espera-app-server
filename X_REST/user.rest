@@ -74,7 +74,7 @@ DELETE  {{baseUrl}}/removeFromWishList
 Content-Type: application/json
 
 {
-"item_id" : 7
+"item_id" : 1
 }
 
 
@@ -108,3 +108,34 @@ Content-Type: application/json
 "user_id" : "usr_20e104abc603",
 "email" : "ammarvady@gmail.com"
 }
+
+
+### STRIPE INTENT
+POST   {{baseUrl}}/paymentIntent
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+### STRIPE INTENT CONFIRM
+POST   {{baseUrl}}/paymentIntentConfirm
+Content-Type: application/json
+
+{
+    "intent_id": "id_fg",
+    "order_ids": ["ordr_56a44d5bda00", "ordr_56a44d5bda02"],
+    "contest_ids": ["con_56a44d5bda00", "con_56a44d5bda02"]
+}
+
+### STRIPE INTENT CONFIRM
+POST   {{baseUrl}}/paymentIntentConfirm
+Content-Type: application/json
+
+{
+    "intent_id": "id_fg"
+}
+
+
+
+

@@ -24,6 +24,8 @@ router.post('/updateLevel', UserController.updateLevel)
 router.get('/isUserExists/:name', UserController.isUserExists)
 
 router.post('/resetPassword', UserController.resetPassword)
+router.post('/paymentIntent', UserController.paymentIntent)
+router.post('/paymentIntentConfirm', UserController.paymentIntentConfirm)
 
 
 

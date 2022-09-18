@@ -147,9 +147,11 @@ const ContestController = {
         if (err) res.status(202).send("ERR" + err);
         // else res.status(200).send(results);
         // else console.log('spot status updated');
+        // updateContestSpot
       }
     )
   },
+
   goToPayment_: (req, res) => {
     var order_id = req.params.order_id;
     var contest_id = req.params.contest_id;
@@ -174,7 +176,6 @@ const ContestController = {
   },
 
 
- 
 
   getAllCoupons: (req, res) => {
     var contest_id = req.params.contest_id;

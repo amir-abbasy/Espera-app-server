@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require("uuid");
+const ContestModel = require("../../models/data/ContestModel");
 const UserModel = require("../../models/data/UserModel");
 const mailer = require("../../utils/mailer");
+const stripe = require("stripe")("sk_test_51H2711DqIVpJBt3RVyG0gp9PB5qtU4joHwdPFhySD3UbtLelO73KEwqTtOKbrUvA81p09BYHW9UEI9TP6GMp8xXr00kFybsnV9");
 
 const table = "users";
 
@@ -194,27 +196,143 @@ const UserController = {
   isUserExists: (req, res) => {
     var name = req.params.name;
     new UserModel().isUserExists(name, (err, result) => {
-      var rslt = Object.values(result[0])
+      var rslt = Object.values(result[0]);
       if (err) res.send({ status: false, error: err });
-      else res.send({ status: true, isUserExists:  rslt[0] == 1 ? true : false});
+      else
+        res.send({ status: true, isUserExists: rslt[0] == 1 ? true : false });
     });
   },
-  resetPassword:(req, res)=>{
-    var newPassword =  uuidv4().split("-")[4]
+  resetPassword: (req, res) => {
+    var newPassword = uuidv4().split("-")[4];
     var mailOptions = {
-      from: 'amirabbasyk@gmail.com',
+      from: "amirabbasyk@gmail.com",
       to: req.body.email,
-      subject: 'Espera account New password ',
-      text: 'Your new password is: '+ newPassword
+      subject: "Espera account New password ",
+      text: "Your new password is: " + newPassword,
     };
 
-    mailer(mailOptions,(msg)=>{
-      new UserModel().updatePassword({user_id: req.body.user_id, new_password: newPassword}, (err, result) => {
-        if (err) res.send({ status: false, error: err });
-        else res.send({ status: true, message: "Password reseted successfully, check your email. "+msg});
-      });
-    })
+    mailer(mailOptions, (msg) => {
+      new UserModel().updatePassword(
+        { user_id: req.body.user_id, new_password: newPassword },
+        (err, result) => {
+          if (err) res.send({ status: false, error: err });
+          else
+            res.send({
+              status: true,
+              message:
+                "Password reseted successfully, check your email. " + msg,
+            });
+        }
+      );
+    });
   },
+  paymentIntent: async (req, res) => {
+  // Create or retrieve the Stripe Customer object associated with your user.
+  let customer = await stripe.customers.create(); // This example just creates a new Customer every time
+
+  // Create an ephemeral key for the Customer; this allows the app to display saved payment methods and save new ones
+  const ephemeralKey = await stripe.ephemeralKeys.create(
+    {customer: customer.id},
+    {apiVersion: '2022-08-01'}
+  );  
+
+  // Create a PaymentIntent with the payment amount, currency, and customer
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: req.body.amount*100,
+    currency: req?.body?.currency ?? 'usd',
+    customer: customer.id,
+    description: "Buy products through e-commerce Espera App",
+    shipping: {
+      name: 'Jenny Rosen',
+      address: {
+        line1: '510 Townsend St',
+        postal_code: '98140',
+        city: 'San Francisco',
+        state: 'CA',
+        country: 'US',
+      },
+    },
+  });
+
+  // Send the object keys to the client
+  res.send({
+    publishableKey: process.env.publishable_key, // https://stripe.com/docs/keys#obtain-api-keys
+    paymentIntent: paymentIntent.client_secret,
+    customer: customer.id,
+    ephemeralKey: ephemeralKey.secret
+  });
+
+    // paymentIntent = await stripe.paymentIntents.create({
+    //   amount: 100 * 100,
+    //   currency: "inr",
+    //   payment_method_types: ["card"],
+    // });
+    // // if (err) res.send({ status: false, error: err });
+    // // else
+    //   res.send({
+    //     status: true,
+    //     message:
+    //       "paymentIntent created successfully",
+    //     data: paymentIntent
+    //   });
+  },
+  paymentIntentConfirm : async (req, res) => {
+    var intent_id = req.body.intent_id
+    const paymentIntent = await stripe.paymentIntents.confirm(
+      intent_id,
+      {payment_method: 'pm_card_visa'}
+    );
+    console.log("paymentIntent", paymentIntent);
+
+    res.status(200).send({
+      data: paymentIntent,
+      message: "joined on contest successfully!"
+    });
+
+  },
+  paymentIntentConfirm_: async (req, res) => {
+    var intent_id = req.body.intent_id
+    var order_ids = req.body.order_ids
+    var contest_ids = req.body.contest_ids
+
+    try {
+      const paymentIntent = await stripe.paymentIntents.confirm(
+        intent_id,
+        {payment_method: 'pm_card_visa'}
+      );
+      console.log("paymentIntent", paymentIntent);
+
+        //  update spots
+       
+        new ContestModel().updateSpot(
+          { order_ids, order_status: "complete" },
+          (err, results) => {
+            if (err) res.status(202).send("ERR" + err);
+            // else res.status(200).send(results);
+            // else console.log('spot status updated');
+
+            // update spot contest
+            contest_ids.forEach(_con_id => {
+              new ContestModel().updateContestSpot(
+                { _con_id },
+                (err, results) => {
+                  if (err) res.status(202).send("ERR" + err);
+                  // else res.status(200).send({status: true, data: {message: 'Order Created successfully'}});
+                  console.log(results);
+                }
+              );
+            })
+            //  update contest
+            res.status(200).send({
+              data: paymentIntent,
+              message: "joined on contest successfully!"
+            });
+          }
+        )
+    } catch (error) {
+      res.status(202).send({data: error.raw});
+    }
+  }
 };
 
 module.exports = UserController;
