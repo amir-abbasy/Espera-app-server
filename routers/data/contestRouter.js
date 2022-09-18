@@ -20,7 +20,7 @@ router.get('/orderSpot/:user_id/:contest_id/:product_id', ContestController.orde
 router.get('/getMyOrders/:user_id/:status', ContestController.getMyOrders)
 router.post('/updateQuantity/:order_id', ContestController.updateQuantity)
 
-router.post('/goToPayment/:order_id/:contest_id', ContestController.goToPayment)
+// router.post('/goToPayment/:order_id/:contest_id', ContestController.goToPayment)
 
 
 router.post('/setWinner', ContestController.setWinner)

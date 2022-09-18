@@ -139,41 +139,41 @@ const ContestController = {
     );
   },
 
-  goToPayment: (req, res) => {
-    var order_ids = req.body.order_ids
-    new ContestModel().updateSpot(
-      { order_ids, order_status: "complete" },
-      (err, results) => {
-        if (err) res.status(202).send("ERR" + err);
-        // else res.status(200).send(results);
-        // else console.log('spot status updated');
-        // updateContestSpot
-      }
-    )
-  },
+  // goToPayment: (req, res) => {
+  //   var order_ids = req.body.order_ids
+  //   new ContestModel().updateSpot(
+  //     { order_ids, order_status: "complete" },
+  //     (err, results) => {
+  //       if (err) res.status(202).send("ERR" + err);
+  //       // else res.status(200).send(results);
+  //       // else console.log('spot status updated');
+  //       // updateContestSpot
+  //     }
+  //   )
+  // },
 
-  goToPayment_: (req, res) => {
-    var order_id = req.params.order_id;
-    var contest_id = req.params.contest_id;
-    // var current_spots = req.params.spots;
+  // goToPayment_: (req, res) => {
+  //   var order_id = req.params.order_id;
+  //   var contest_id = req.params.contest_id;
+  //   // var current_spots = req.params.spots;
 
-    // console.log("now", req.params);
-    new ContestModel().updateSpot(
-      { order_id, order_status: "complete" },
-      (err, results) => {
-        if (err) res.status(202).send("ERR" + err);
-        // else res.status(200).send(results);
-        // else console.log('spot status updated');
-      }
-    )
-    new ContestModel().updateContestSpot(
-      { contest_id },
-      (err, results) => {
-        if (err) res.status(202).send("ERR" + err);
-        else res.status(200).send({status: true, data: {message: 'Order Created successfully'}});
-      }
-    );
-  },
+  //   // console.log("now", req.params);
+  //   new ContestModel().updateSpot(
+  //     { order_id, order_status: "complete" },
+  //     (err, results) => {
+  //       if (err) res.status(202).send("ERR" + err);
+  //       // else res.status(200).send(results);
+  //       // else console.log('spot status updated');
+  //     }
+  //   )
+  //   new ContestModel().updateContestSpot(
+  //     { contest_id },
+  //     (err, results) => {
+  //       if (err) res.status(202).send("ERR" + err);
+  //       else res.status(200).send({status: true, data: {message: 'Order Created successfully'}});
+  //     }
+  //   );
+  // },
 
 
 

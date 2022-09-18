@@ -164,7 +164,7 @@ const UserController = {
 
   addToWishList: (req, res) => {
     var wishitem_id = "wish_" + uuidv4().split("-")[4];
-    const body = {...req.body, wishitem_id };
+    const body = { ...req.body, wishitem_id };
     new UserModel().addToWishList(body, (err, results) => {
       if (err) res.send("ERR" + err);
       else res.send("Contest added to wishlist successfully");
@@ -173,10 +173,15 @@ const UserController = {
 
   removeFromWishList: (req, res) => {
     const itemId = req.body.item_id;
-    new UserModel().delete("wishlists", "wishitem_id", itemId, (err, results) => {
-      if (err) res.send("ERR" + err);
-      else res.send("Contest removed from your wishlist");
-    });
+    new UserModel().delete(
+      "wishlists",
+      "wishitem_id",
+      itemId,
+      (err, results) => {
+        if (err) res.send("ERR" + err);
+        else res.send("Contest removed from your wishlist");
+      }
+    );
   },
 
   getWishLists: (req, res) => {
@@ -291,33 +296,31 @@ const UserController = {
       });
       console.log("paymentIntent", paymentIntent);
 
-      //  update spots
-
+      // update spots
       new ContestModel().updateSpot(
         { order_ids, order_status: "complete" },
         (err, results) => {
           if (err) res.status(202).send("ERR" + err);
           // else res.status(200).send(results);
           // else console.log('spot status updated');
-
-          // update spot contest
-          contest_ids.forEach((con_id) => {
-            new ContestModel().updateContestSpot(
-              { con_id },
-              (err, results) => {
-                if (err) res.status(202).send("ERR" + err);
-                // else res.status(200).send({status: true, data: {message: 'Order Created successfully'}});
-                console.log(results);
-              }
-            );
-          });
-          //  update contest
           res.status(200).send({
             data: paymentIntent,
             message: "joined on contest successfully!",
           });
         }
       );
+      // update spot contest
+      new ContestModel().updateContestSpot({ contest_ids }, (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else
+          res
+            .status(200)
+            .send({
+              status: true,
+              data: { message: "Order completed successfully" },
+            });
+        console.log(results);
+      });
     } catch (error) {
       res.status(202).send({ data: error.raw });
     }

@@ -76,10 +76,16 @@ INNER JOIN products ON orders_spots.product_id = products.pr_id) WHERE orders_sp
   };
 
   updateContestSpot = (obj, callback) => {
+    var contest_ids = obj.contest_ids.map(_=> "'"+_+"'").join(',')
     //  let sql = `UPDATE contests SET con_spots = ${parseInt(obj.current_spots) + 1} WHERE con_id = '${obj.contest_id}'`;
-    let sql = `UPDATE contests SET con_status = CASE WHEN (con_spots+1 = con_total_spots)THEN 'draw' ELSE 'active' END, con_spots = con_spots+1 WHERE con_id = '${obj.contest_id}'`;
+    let sql = `UPDATE contests SET con_status = CASE WHEN (con_spots+1 = con_total_spots)THEN 'draw' ELSE 'active' END, con_spots = con_spots+1 WHERE con_id IN (${contest_ids})`;
     this.db.query(sql, callback);
   };
+  // updateContestSpot = (obj, callback) => {
+  //   //  let sql = `UPDATE contests SET con_spots = ${parseInt(obj.current_spots) + 1} WHERE con_id = '${obj.contest_id}'`;
+  //   let sql = `UPDATE contests SET con_status = CASE WHEN (con_spots+1 = con_total_spots)THEN 'draw' ELSE 'active' END, con_spots = con_spots+1 WHERE con_id = '${obj.contest_id}'`;
+  //   this.db.query(sql, callback);
+  // };
 
   getAllCoupons = (obj, callback) => {
     // con_243636b913cf
