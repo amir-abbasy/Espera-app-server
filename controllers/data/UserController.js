@@ -309,18 +309,14 @@ const UserController = {
           });
         }
       );
+
       // update spot contest
       new ContestModel().updateContestSpot({ contest_ids }, (err, results) => {
         if (err) res.status(202).send("ERR" + err);
-        // else
-        //   res
-        //     .status(200)
-        //     .send({
-        //       status: true,
-        //       data: { message: "Order completed successfully" },
-        //     });
+        // else res.status(200).send({status: true,data: { message: "Order completed successfully" },});
         console.log(results);
       });
+
     } catch (error) {
       res.status(202).send({ data: error.raw });
     }
