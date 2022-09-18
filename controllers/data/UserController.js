@@ -275,22 +275,9 @@ const UserController = {
     //       "paymentIntent created successfully",
     //     data: paymentIntent
     //   });
-  },
-  paymentIntentConfirm : async (req, res) => {
-    var intent_id = req.body.intent_id
-    const paymentIntent = await stripe.paymentIntents.confirm(
-      intent_id,
-      {payment_method: 'pm_card_visa'}
-    );
-    console.log("paymentIntent", paymentIntent);
-
-    res.status(200).send({
-      data: paymentIntent,
-      message: "joined on contest successfully!"
-    });
 
   },
-  paymentIntentConfirm_: async (req, res) => {
+  paymentIntentConfirm: async (req, res) => {
     var intent_id = req.body.intent_id
     var order_ids = req.body.order_ids
     var contest_ids = req.body.contest_ids
