@@ -345,10 +345,6 @@ const UserController = {
         console.log(results);
       });
 
-
-      res.status(200).send({
-        message: "joined on contest successfully!",
-      });
   },
 };
 
