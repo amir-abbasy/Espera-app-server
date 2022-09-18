@@ -285,7 +285,7 @@ const UserController = {
       ephemeralKey: ephemeralKey.secret,
     });
   },
-  paymentIntentConfirm: async (req, res) => {
+  paymentIntentConfirm_____: async (req, res) => {
     var intent_id = req.body.intent_id;
     var order_ids = req.body.order_ids;
     var contest_ids = req.body.contest_ids;
@@ -303,11 +303,7 @@ const UserController = {
           if (err) res.status(202).send("ERR" + err);
           // else res.status(200).send(results);
           // else console.log('spot status updated');
-          res.status(200).send({
-            data: paymentIntent,
-            message: "joined on contest successfully!",
-          });
-        }
+         }
       );
 
       // update spot contest
@@ -317,11 +313,43 @@ const UserController = {
         console.log(results);
       });
 
+
+      res.status(200).send({
+        data: paymentIntent,
+        message: "joined on contest successfully!",
+      });
+
+      
     } catch (error) {
       res.status(202).send({ data: error.raw });
     }
   },
+  paymentIntentConfirm: async (req, res) => {
+    var intent_id = req.body.intent_id;
+    var order_ids = req.body.order_ids;
+    var contest_ids = req.body.contest_ids;
+      // update spots
+      new ContestModel().updateSpot(
+        { order_ids, order_status: "complete" },
+        (err, results) => {
+          if (err) res.status(202).send("ERR" + err);
+          // else res.status(200).send(results);
+          // else console.log('spot status updated');
+         }
+      );
 
+      // update spot contest
+      new ContestModel().updateContestSpot({ contest_ids }, (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else res.status(200).send({status: true, data: { message: "Order completed successfully" }});
+        console.log(results);
+      });
+
+
+      res.status(200).send({
+        message: "joined on contest successfully!",
+      });
+  },
 };
 
 module.exports = UserController;
