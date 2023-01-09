@@ -1,9 +1,10 @@
 const { v4: uuidv4 } = require("uuid");
 const ContestModel = require("../../models/data/ContestModel");
 const UserModel = require("../../models/data/UserModel");
+const Model = require("../../models/Model");
 const mailer = require("../../utils/mailer");
 const stripe = require("stripe")(
-  "sk_test_51H2711DqIVpJBt3RVyG0gp9PB5qtU4joHwdPFhySD3UbtLelO73KEwqTtOKbrUvA81p09BYHW9UEI9TP6GMp8xXr00kFybsnV9"
+  "sk_test_51LfrOOBjRYqL3JogftRiYcVKX4hri6PTnG4XWJ3tEb3a1SNa6JFgs8dC41GzSNcZiBWrB6JjbMzDIiazfUVVdSKj00LMKlwy4g"
 );
 
 const table = "users";
@@ -87,9 +88,9 @@ const UserController = {
   },
   deleteUser: (req, res) => {
     // const table = req.params.table
-    const _id = req.body.id;
+    const _id = req.body.user_id;
     console.log("===", _id);
-    new UserModel().deleteData(table, _id, (err, results) => {
+    new UserModel().delete(table, "user_id",_id, (err, results) => {
       if (err) res.send("ERR" + err);
       else res.send(results);
     });
@@ -98,7 +99,7 @@ const UserController = {
   login: (req, res) => {
     new UserModel().getOne(
       table,
-      "username",
+      "email",
       req.body.username,
       (err, results) => {
         if (err) res.send("ERR" + err);
@@ -113,8 +114,8 @@ const UserController = {
               console.log("password don't match");
             }
           } else {
-            res.send("no user font");
-            console.log("no user font");
+            res.send("no user found!");
+            console.log("no user found!");
           }
           // res.send(results)
         }
@@ -203,7 +204,8 @@ const UserController = {
 
   isUserExists: (req, res) => {
     var name = req.params.name;
-    new UserModel().isUserExists(name, (err, result) => {
+    var field = 'email';
+    new UserModel().isUserExists(field, name, (err, result) => {
       var rslt = Object.values(result[0]);
       if (err) res.send({ status: false, error: err });
       else
@@ -303,7 +305,7 @@ const UserController = {
           if (err) res.status(202).send("ERR" + err);
           // else res.status(200).send(results);
           // else console.log('spot status updated');
-         }
+        }
       );
 
       // update spot contest
@@ -313,13 +315,10 @@ const UserController = {
         console.log(results);
       });
 
-
       res.status(200).send({
         data: paymentIntent,
         message: "joined on contest successfully!",
       });
-
-      
     } catch (error) {
       res.status(202).send({ data: error.raw });
     }
@@ -328,23 +327,39 @@ const UserController = {
     var intent_id = req.body.intent_id;
     var order_ids = req.body.order_ids;
     var contest_ids = req.body.contest_ids;
-      // update spots
-      new ContestModel().updateSpot(
-        { order_ids, order_status: "complete" },
-        (err, results) => {
-          if (err) res.status(202).send("ERR" + err);
-          // else res.status(200).send(results);
-          // else console.log('spot status updated');
-         }
-      );
-
-      // update spot contest
-      new ContestModel().updateContestSpot({ contest_ids }, (err, results) => {
+    // update spots
+    new ContestModel().updateSpot(
+      { order_ids, order_status: "complete" },
+      (err, results) => {
         if (err) res.status(202).send("ERR" + err);
-        else res.status(200).send({status: true, data: { message: "Order completed successfully" }});
-        console.log(results);
-      });
+        // else res.status(200).send(results);
+        // else console.log('spot status updated');
+      }
+    );
 
+    // update spot contest
+    new ContestModel().updateContestSpot({ contest_ids }, (err, results) => {
+      if (err) res.status(202).send("ERR" + err);
+      else
+        res
+          .status(200)
+          .send({
+            status: true,
+            data: { message: "Order completed successfully" },
+          });
+      console.log(results);
+    });
+  },
+  setStaff: async (req, res) => {
+    new UserModel().setStaff(
+      "users",
+      { username: req.body.username },
+      (err, results) => {
+        if (err) res.status(202).send("ERR" + err);
+        else res.status(200).send( req.body.username + " is a new promoter");
+        // else console.log('spot status updated');
+      }
+    );
   },
 };
 

@@ -46,17 +46,20 @@ class UserModel extends Model {
     this.db.query(sql, callback);
   };
 
-   isUserExists = (username, callback) => {
-    let sql = `SELECT EXISTS(SELECT 1 FROM users WHERE username = '${username}');`
+  isUserExists = (field, username, callback) => {
+    let sql = `SELECT EXISTS(SELECT 1 FROM users WHERE ${field} = '${username}');`;
     this.db.query(sql, callback);
-    };
+  };
 
-    updatePassword = async (obj, callback) => {
-      let sql = `UPDATE users SET user_password ='${obj.new_password}' WHERE user_id = '${obj.user_id}'`;
-      this.db.query(sql, callback);
-    };
+  updatePassword = async (obj, callback) => {
+    let sql = `UPDATE users SET user_password ='${obj.new_password}' WHERE user_id = '${obj.user_id}'`;
+    this.db.query(sql, callback);
+  };
 
+  setStaff = async (obj, callback) => {
+    let sql = `UPDATE users SET isStaff = 1 WHERE username = '${obj.username}'`;
+    this.db.query(sql, callback);
+  };
 }
-
 
 module.exports = UserModel;

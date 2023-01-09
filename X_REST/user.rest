@@ -40,11 +40,11 @@ Content-Type: application/json
 
 ###
 
-DELETE   {{baseUrl}}/deleteData/users
+DELETE   {{baseUrl}}/deleteUser
 Content-Type: application/json
 
 {
-"id": "25"
+"user_id": "usr_94bd79bddb55"
 }
 
 ###
@@ -96,6 +96,13 @@ Content-Type: application/json
 ### get staff
 GET {{baseUrl}}/getStaff/usr_admin
 
+### set staff
+POST   {{baseUrl}}/setStaff
+Content-Type: application/json
+
+{
+"username" : "ammar"
+}
 
 ### get is user exists
 GET {{baseUrl}}/isUserExists/ammar

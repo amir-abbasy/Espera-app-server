@@ -12,6 +12,7 @@ router.delete('/deleteUser', UserController.deleteUser)
 
 router.post('/login', UserController.login)
 router.get('/getStaff/:user_id', UserController.getStaff)
+router.post('/setStaff', UserController.setStaff)
 router.get('/getMyAddress/:user_id', UserController.getMyAddress)
 router.post('/updateMyAddress', UserController.updateMyAddress)
 router.post('/addToRefferal', UserController.addToRefferal)

@@ -1,6 +1,10 @@
 const mysql  = require('mysql');
 require('dotenv').config();
 
+
+// password : esperadb 
+// 
+
 const ENV = process.env;
 
 const host =  ENV.NODE_ENV ==  'dev' ? ENV.HOST2 : ENV.HOST; 
