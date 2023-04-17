@@ -107,15 +107,12 @@ const UserController = {
           // console.log("====", results);
           if (results.length != 0) {
             if (results[0].user_password == req.body.user_password) {
-              console.log("go now");
-              res.send(results);
+              res.json({status: true, data: results});
             } else {
-              res.send("password don't match");
-              console.log("password don't match");
+              res.json({status: false, error: "password don't match"});
             }
           } else {
-            res.send("no user found!");
-            console.log("no user found!");
+            res.json({status: false, error: "no user found!"});
           }
           // res.send(results)
         }
@@ -268,7 +265,7 @@ const UserController = {
       customer: customer.id,
       description: "Buy products through e-commerce Espera App",
       shipping: {
-        name: "Jenny Rosen",
+        name: "Espera Customer",
         address: {
           line1: "510 Townsend St",
           postal_code: "98140",

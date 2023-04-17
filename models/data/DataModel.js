@@ -16,6 +16,8 @@ class DataModel extends Model {
         let sql = `SELECT * FROM contests INNER JOIN products ON contests.product_id = products.pr_id ORDER BY contests.id DESC LIMIT 3`;
         this.db.query(sql, callback);
     };
+
+ 
 }
 
 module.exports = DataModel;

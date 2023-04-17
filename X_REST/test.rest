@@ -74,6 +74,8 @@ GET {{baseUrl}}/getEndingSpots
 GET {{baseUrl}}/getCovers
 ###
 
+GET {{baseUrl}}/getCurrencies
+###
 
 GET  {{baseUrl}}/upload/pathName
 Content-Type: application/json
